@@ -35,7 +35,7 @@
 + - [ ] 오래된 강의실 정보 알림
 + - [ ] 교외 활동 게시판
 
-[code](https://github.com/qaoechi/lectureRoom)
+[code](https://github.com/qaoechi/imsi)
 
 ## 화면
 <img width="1280" height="510" alt="Image" src="https://github.com/user-attachments/assets/b662b8ac-a903-41c6-a770-325a637624e5" />
