@@ -1,11 +1,14 @@
 @import url("header/navigation.css");
 @import url("header/mypage.css");
 
+:root {
+    --header-height: 50px;
+}
 #header {
     display: flex;
     position: fixed;
     width: 100%;
-    height: 50px;
+    height: var(--header-height);
 }
 #navigation {
     width: 90%;

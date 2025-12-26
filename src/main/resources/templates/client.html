@@ -4,8 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>점자리</title>
+        <link th:href="@{/css/client.css}" rel="stylesheet">
+        <link th:if="${main}" th:href="@{/css/fragments/buildings.css}" rel="stylesheet">
+
     </head>
     <body>
-        <div th:text="${name}"></div>
+        <header>
+            <div th:replace="~{fragments/header::header}"></div>
+        </header>
+        <main>
+            <div th:switch="${main}">
+                <div th:case="buildings" th:replace="~{fragments/buildings::buildings}"></div>
+            </div>
+        </main>
     </body>
 </html>
