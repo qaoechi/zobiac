@@ -4,9 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>점자리</title>
+        <link th:href="@{/css/home.css}" rel="stylesheet">
     </head>
     <body>
         <header>
+            <div style="display: none;">imsi</div>
             <div th:replace="~{fragments/header/navigation::navigation}"></div>
             <div th:replace="~{fragments/header/mypage::mypage}"></div>
         </header>
@@ -14,7 +16,6 @@
             <!-- <div th:replace="~{fragments/::}"></div> -->
         </main>
         <footer>
-            footer
         </footer>
     </body>
 </html>
