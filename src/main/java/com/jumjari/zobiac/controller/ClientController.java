@@ -1,21 +1,19 @@
 package com.jumjari.zobiac.controller;
 
-
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.jumjari.zobiac.application.building.BuildingFacadeService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 
 import lombok.AllArgsConstructor;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import com.jumjari.zobiac.application.building.BuildingFacadeService;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/jumjari/client")
+@RequestMapping("/client")
 public class ClientController {
     private final BuildingFacadeService buildingService;
 
