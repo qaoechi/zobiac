@@ -7,6 +7,7 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.FetchType;
@@ -15,6 +16,8 @@ import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import com.jumjari.zobiac.domain.building.BuildingEntity;
 
 @Entity
 @AllArgsConstructor
@@ -39,7 +42,7 @@ public class RoomEntity {
         nullable = false,
         foreignKey = @ForeignKey(name = "fk_rooms_building")
     )
-    private Long building;
+    private BuildingEntity building;
 
     @Column(name = "room_number", nullable = false, length = 5)
     private String number;

@@ -5,33 +5,23 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.Query;
 
 public interface ClassroomRepository extends JpaRepository<ClassroomEntity, Long> {
-    @EntityGraph(attributePaths = "room")
-    @Query(value = """
-        SELECT c
-        FROM ClassroomEntity c
-        JOIN FETCH c.room r
-        WHERE r.building = :building AND c.actived = true
-        ORDER BY r.floor ASC, r.number ASC
-    """)
-    List<ClassroomEntity> findAllByBuildingTrue(String building);
-
-    @EntityGraph(attributePaths = "room")
-    @Query(value = """
-        SELECT c
-        FROM ClassroomEntity c
-        JOIN FETCH c.room r
-        WHERE r.building = :building
-        ORDER BY r.floor ASC, r.number ASC
-    """)
-    List<ClassroomEntity> findAllByBuilding(String building);
-    
-    @EntityGraph(attributePaths = "room")
     Optional<ClassroomEntity> findById(Long id);
-    // @EntityGraph(attributePaths = "room")
-    // List<ClassroomEntity> findAllByRoom_BuildingAndActivedTrue(String name);
-    // @EntityGraph(attributePaths = "room")
-    // Optional<ClassroomEntity> findByIdAndActivedTrue(Long id);
+
+    @EntityGraph(
+        value = "ClassroomEntity.room.building",
+        type = EntityGraphType.FETCH
+    )
+    @Query("""
+            SELECT c
+            FROM ClassroomEntity c
+            JOIN c.room r
+            JOIN r.building b
+            where b.korFull = :buildingName and c.isActive = true
+    """)
+    List<ClassroomEntity> findAllByBuildingNameTrue(String buildingName);
+    // @EntityGraph(attributePaths = {"room", "room.building"})
 }
