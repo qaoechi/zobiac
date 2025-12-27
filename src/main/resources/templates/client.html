@@ -5,17 +5,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>점자리</title>
         <link th:href="@{/css/client.css}" rel="stylesheet">
-        <link th:if="${main}" th:href="@{/css/fragments/buildings.css}" rel="stylesheet">
+        <th:block th:switch="${main}">
+            <th:block th:case="buildings">
+                <link th:href="@{/css/fragments/buildings.css}" rel="stylesheet">
+            </th:block>
+            <th:block th:case="classroom">
+                <link th:href="@{/css/fragments/classroom.css}" rel="stylesheet">
+            </th:block>
+        </th:block>
 
+        <th:block th:switch="${sub}">
+            <th:block th:case="dashboard">
+                <link th:href="@{/css/fragments/classroom/dashboard.css}" rel="stylesheet">
+            </th:block>
+            <th:block th:case="editor">
+                <link th:href="@{/css/fragments/.css}" rel="stylesheet">
+            </th:block>
+            <th:block th:case="history">
+                <link th:href="@{/css/fragments/.css}" rel="stylesheet">
+            </th:block>
+        </th:block>
     </head>
     <body>
         <header>
             <div th:replace="~{fragments/header::header}"></div>
         </header>
         <main>
-            <div th:switch="${main}">
-                <div th:case="buildings" th:replace="~{fragments/buildings::buildings}"></div>
-            </div>
+            <th:block th:switch="${main}">
+                <th:block th:case="buildings">
+                    <div th:insert="~{fragments/buildings::buildings}"></div>
+                </th:block>
+                <th:block th:case="classroom">
+                    <div th:insert="~{fragments/classroom::classroom}"></div>
+                </th:block>
+                <th:block th:case="*">
+                    아무거도 없으요
+                </th:block>
+            </th:block>
         </main>
     </body>
 </html>

@@ -1,0 +1,7 @@
+@import url("dashboard/rest.css");
+@import url("dashboard/waiting.css");
+@import url("dashboard/warning.css");
+
+#dashboard {
+    display: flex;
+}

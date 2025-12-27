@@ -1,0 +1,12 @@
+<div th:fragment="classroom" id=classroom>
+    <div th:replace="~{fragments/classroom/tools::tools}"></div>
+    
+    <th:block th:switch="${sub}">
+        <div th:case="dashboard" id="dashboard">
+            <th:block th:insert="~{fragments/classroom/dashboard/rest::rest}"></th:block>
+            <th:block th:insert="~{fragments/classroom/dashboard/waiting::waiting}"></th:block>
+            <th:block th:insert="~{fragments/classroom/dashboard/warning::warning}"></th:block>
+        </div>
+
+    </div>
+</div>

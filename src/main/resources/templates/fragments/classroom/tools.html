@@ -1,0 +1,12 @@
+<div th:fragment="tools" id="classroom-tools">
+    <div th:text="${building}" class="now-building">현재 건물</div>
+    <div class="tools">
+        <a th:href="@{/client/building}" class="go-back">뒤로가기</a>
+        <a th:href="@{'/client/classroom/' + ${engShort} + '/editor'}" class="modify">수정</a>
+        <a th:href="@{'/client/classroom/' + ${engShort} + '/history'}" class="record">기록</a>
+        <div>보기 모드</div>
+        <a th:href="@{'/client/classroom/' + ${engShort} + '/download'}" class="download">
+            <span th:text="${building} + ' 다운로드'"></span>
+        </a>
+    </div>
+</div>

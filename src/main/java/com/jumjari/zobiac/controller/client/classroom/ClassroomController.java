@@ -6,25 +6,28 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.building.BuildingFacadeService;
 import com.jumjari.zobiac.application.building.dto.Building;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/client")
 public class ClassroomController {
     private final BuildingFacadeService buildingService;
+    private String sub = "dashboard";
 
     @GetMapping("/building")
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
-            "main", "buildings"
+            "main", "buildings" 
         ));
         return "client";
     }
@@ -36,5 +39,17 @@ public class ClassroomController {
     @PostMapping("move-building")
     public String moveTo() {
         return null;
+    }
+    @GetMapping("/classroom/{building}")
+    public String classroomDashboard(
+        @PathVariable("building") String building,
+        Model model
+    ) {
+        model.addAllAttributes(Map.of(
+            "main", "classroom",
+            "sub", sub,
+            "building", buildingService.getKorFull(building)
+        ));
+        return "client";
     }
 }
