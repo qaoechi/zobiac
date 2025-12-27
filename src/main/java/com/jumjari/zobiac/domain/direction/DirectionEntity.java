@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.domain.classroom.field;
+package com.jumjari.zobiac.domain.direction;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

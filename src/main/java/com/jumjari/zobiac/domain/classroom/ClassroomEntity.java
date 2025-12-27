@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.jumjari.zobiac.domain.classroom.field.DirectionEntity;
-import com.jumjari.zobiac.domain.classroom.field.DoorTypeEntity;
 import com.jumjari.zobiac.domain.room.RoomEntity;
+import com.jumjari.zobiac.domain.direction.DirectionEntity;
+import com.jumjari.zobiac.domain.door_type.DoorTypeEntity;
 
 @Entity
 @NoArgsConstructor
