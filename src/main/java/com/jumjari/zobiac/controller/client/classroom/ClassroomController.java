@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.controller;
+package com.jumjari.zobiac.controller.client.classroom;
 
 import java.util.Map;
 import java.util.List;
@@ -13,11 +13,12 @@ import lombok.AllArgsConstructor;
 
 import com.jumjari.zobiac.application.building.BuildingFacadeService;
 import com.jumjari.zobiac.application.building.dto.Building;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/client")
-public class ClientController {
+public class ClassroomController {
     private final BuildingFacadeService buildingService;
 
     @GetMapping("/building")
@@ -27,9 +28,13 @@ public class ClientController {
         ));
         return "client";
     }
-    @ResponseBody
     @GetMapping("/buildings")
-    public List<Building> getMethodName() {
+    @ResponseBody
+    public List<Building> getBuildings() {
         return buildingService.getBuildings();
+    }
+    @PostMapping("move-building")
+    public String moveTo() {
+        return null;
     }
 }
