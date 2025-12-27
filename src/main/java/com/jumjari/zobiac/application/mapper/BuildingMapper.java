@@ -7,5 +7,6 @@ import com.jumjari.zobiac.domain.building.BuildingEntity;
 
 @Mapper(componentModel = "spring")
 public interface BuildingMapper {
-    Building toDTO(BuildingEntity building);
+    Building toDto(BuildingEntity entity);
+    BuildingEntity toEntity(Building dto);
 }

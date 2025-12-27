@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import com.jumjari.zobiac.application.building.dto.Building;
 import com.jumjari.zobiac.application.building.service.ConversionService;
-import com.jumjari.zobiac.application.building.service.SearchService;
+import com.jumjari.zobiac.application.building.service.BuildingSearchService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class BuildingFacadeService {
-    private final SearchService search;
+    private final BuildingSearchService search;
     private final ConversionService conversion;
 
     public List<Building> getBuildings() {

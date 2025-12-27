@@ -14,24 +14,24 @@ import com.jumjari.zobiac.application.building.dto.Building;
 @Service
 @AllArgsConstructor
 @Transactional(readOnly = true)
-public class SearchService {
+public class BuildingSearchService {
     private final BuildingRepository repository;
     private final BuildingMapper mapper; 
 
     public List<Building> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toDTO)
+            .map(mapper::toDto)
             .toList();
     }
     public Building getByEngShort(String engShort) {
         return repository.findByEngShort(engShort)
-            .map(mapper::toDTO)
+            .map(mapper::toDto)
             .orElse(null);
     }
     public Building getByKorFull(String korFull) {
         return repository.findByKorFull(korFull)
-            .map(mapper::toDTO)
+            .map(mapper::toDto)
             .orElse(null);
     }
 }

@@ -11,11 +11,13 @@ import org.hibernate.annotations.Immutable;
 
 import lombok.NoArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Immutable
 @NoArgsConstructor
 @Getter
+@Setter
 @Table(name = "buildings")
 public class BuildingEntity {
     @Id
