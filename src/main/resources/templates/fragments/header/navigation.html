@@ -1,0 +1,28 @@
+<nav th:fragment="navigation">
+    <ul>
+        <li>
+            <a th:href="@{/home}">동아리</a>
+        </li>
+        <li>
+            <a th:href="@{/client/building}">교내활동</a>
+            <ul>
+                <li><a th:href="@{/client/building}">강의실 점자</a></li>
+                <li><a th:href="@{/client/cafe}">카페 조사</a></li>
+                <li><a th:href="@{/client/in-guitar}">교내 기타 활동</a></li>
+            </ul>
+        </li>
+        <li>
+            <a th:href="@{/client/jin-n-su}">교외 활동</a>
+            <ul>
+                <li><a th:href="@{/client/jin-n-su}">진앤수</a></li>
+            </ul>
+        </li>
+        <li>
+            <a th:href="@{/client/archive}">도구</a>
+            <ul>
+                <li><a th:href="@{/client/schedule}">시간표</a></li>
+                <li><a th:href="@{/client/archive}">자료실</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
