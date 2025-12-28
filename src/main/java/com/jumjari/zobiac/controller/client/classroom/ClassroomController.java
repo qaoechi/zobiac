@@ -48,8 +48,9 @@ public class ClassroomController {
         model.addAllAttributes(Map.of(
             "main", "classroom",
             "sub", sub,
-            "building", buildingService.getKorFull(building)
-        ));
+            "building", buildingService.getKorFull(building),
+            "url", building
+            ));
         return "client";
     }
 }

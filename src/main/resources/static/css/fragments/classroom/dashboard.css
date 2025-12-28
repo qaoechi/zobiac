@@ -4,4 +4,18 @@
 
 #dashboard {
     display: flex;
+    padding: 0 2%;
+}
+
+#dashboard-rest {
+    width: 33%;
+    border: 1px solid black;
+}
+#dashboard-waiting {
+    width: 33%;
+    border: 1px solid black;
+}
+#dashboard-warning {
+    width: 33%;
+    border: 1px solid black;
 }
