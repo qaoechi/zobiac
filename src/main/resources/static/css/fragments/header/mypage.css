@@ -1,0 +1,6 @@
+#mypage {
+    border: 1px black solid;
+}
+#mypage > a {
+    display: none;
+}
