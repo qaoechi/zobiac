@@ -5,16 +5,16 @@
             <th>표지판</th>
             <th>앞문</th>
             <th>뒷문</th>
-            <th>기타</th>
-            <th>오래됨</th>
+            <!-- <th>기타</th> -->
+            <!-- <th>오래됨</th> -->
         </tr>
-        <!-- <tr th:each="classroom : ${classrooms}">
-            <td th:text="${classroom.room}">101</td>
-            <td th:text="${classroom.sign}">←국제210 컴퓨터실습실</td>
+        <tr th:each="classroom : ${classrooms}">
+            <td th:text="${classroom.number}">B101-1</td>
+            <td th:text="${classroom.placard}">←국제210 컴퓨터실습실</td>
             <td th:text="${classroom.front}">국제210 컴퓨터실습실</td>
             <td th:text="${classroom.back}">국제210 컴퓨터실습실 뒤</td>
-            <td th:text="${classroom.memo}">기타</td>
-            <td th:text="${classroom.expireTime}">언제까지</td>
-        </tr> -->
+            <!-- <td th:text="${classroom.memo}">기타</td> -->
+            <!-- <td th:text="${classroom.expireTime}">언제까지</td> -->
+        </tr>
     </table>
 </div>

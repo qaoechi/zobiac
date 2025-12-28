@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.building.BuildingFacadeService;
 import com.jumjari.zobiac.application.building.dto.Building;
+import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/client")
 public class ClassroomController {
     private final BuildingFacadeService buildingService;
+    private final ClassroomFacadeService classroomService;
     private String sub = "dashboard";
 
     @GetMapping("/building")
@@ -49,7 +51,8 @@ public class ClassroomController {
             "main", "classroom",
             "sub", sub,
             "building", buildingService.getKorFull(building),
-            "url", building
+            "url", building,
+            "classrooms", classroomService.getSigns(building)
             ));
         return "client";
     }
