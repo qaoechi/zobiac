@@ -44,13 +44,12 @@ public class ClassroomController {
         @RequestParam("option") String option,
         @RequestParam("name") String name
     ) {
-        System.out.println(buildingService.getByInput(name));
         if (!option.isBlank()) {
             return "redirect:/client/classroom/" + option;
         } else {
             if (name == null || name.isBlank()) return "redirect:/client/building";
             return buildingService.getByInput(name)
-                .map(n -> "redirect:/client/" + n)
+                .map(n -> "redirect:/client/classroom/" + n)
                 .orElse("redirect:/client/building");
         }
     }
