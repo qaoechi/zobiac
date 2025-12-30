@@ -1,6 +1,7 @@
 package com.jumjari.zobiac.application.building.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,10 @@ public class BuildingFacadeService {
         return search.getByKorFull(korFull)
             .map(Building::getEngShort)
             .orElseThrow(() -> new IllegalArgumentException(korFull + "does not exist"));
+    }
+    public Optional<String> getByInput(String name) {
+        return search.getByInput(name)
+            .findFirst()
+            .map(Building::getEngShort);
     }
 }

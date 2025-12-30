@@ -2,6 +2,7 @@ package com.jumjari.zobiac.application.building.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,11 @@ class BuildingSearchService {
     }
     Optional<Building> getByKorFull(String korFull) {
         return repository.findByKorFull(korFull)
+            .map(mapper::toDto);
+    }
+    Stream<Building> getByInput(String name) {
+        return repository.findByKorFullContaining(name)
+            .stream()
             .map(mapper::toDto);
     }
 }
