@@ -28,9 +28,10 @@ public class ClassroomController {
     @GetMapping("/building")
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
+            "main", "buildings",
             "buildings", buildingService.getBuildings()
         ));
-        return "building-page";
+        return "client";
     }
 
     @GetMapping("/buildings")
@@ -60,10 +61,11 @@ public class ClassroomController {
         Model model
     ) {
         model.addAllAttributes(Map.of(
+            "main", "dashboard",
             "building_name", buildingService.getKorFull(building),
             "url", building,
             "signs", classroomService.getSigns(buildingService.getKorFull(building))
         ));
-        return "classroom-page";
+        return "client";
     }
 }
