@@ -23,10 +23,10 @@ public class ClassroomFacadeService {
         return search.getClassroomById(id)
             .orElseThrow(() -> new EntityNotFoundException("classroom not found"));
     }
-    public List<Classroom> getClassroomsByBuildingTrue(String building) {
-        return search.getClassroomsByBuildingTrue(building);
+    public List<Classroom> getClassroomsByBuildingTrue(String korFull) {
+        return search.getClassroomsByBuildingTrue(korFull);
     }
-    public List<Sign> getSigns(String building) {
-        return sign.getSigns(building);
+    public List<Sign> getSigns(String korFull) {
+        return sign.getSigns(korFull);
     }
 }

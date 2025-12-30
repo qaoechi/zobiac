@@ -16,8 +16,8 @@ public class RoomFacadeService {
     private final RoomSearchService search;
     private final LifeService life;
 
-    public List<Room> getRoomsByBuilding(String building) {
-        return search.getAllByBuilding(building);
+    public List<Room> getRoomsByBuilding(String korFull) {
+        return search.getAllByBuilding(korFull);
     }
     public boolean exists(Room room) {
         return search.roomExists(room);

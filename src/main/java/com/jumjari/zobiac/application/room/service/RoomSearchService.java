@@ -19,8 +19,8 @@ class RoomSearchService {
     private final RoomRepository repository;
     private final RoomMapper mapper;
 
-    List<Room> getAllByBuilding(String building) {
-        return repository.findAllByBuilding_korFull(building)
+    List<Room> getAllByBuilding(String korFull) {
+        return repository.findAllByBuilding_korFull(korFull)
             .stream()
             .map(mapper::toRoomDto)
             .toList();

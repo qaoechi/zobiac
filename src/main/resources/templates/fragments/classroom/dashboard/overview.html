@@ -1,0 +1,16 @@
+<div th:fragment="overview" id="dashboard-overview">
+    <table class="status__table">
+        <tr>
+            <th>호수</th>
+            <th>표지판</th>
+            <th>앞문</th>
+            <th>뒷문</th>
+        </tr>
+        <tr th:each="sign : ${signs}">
+            <td th:text="${sign.number}">B101-1</td>
+            <td th:text="${sign.placard}">←국제210 컴퓨터실습실</td>
+            <td th:text="${sign.front}">국제210 컴퓨터실습실</td>
+            <td th:text="${sign.back}">국제210 컴퓨터실습실 뒤</td>
+        </tr>
+    </table>
+</div>
