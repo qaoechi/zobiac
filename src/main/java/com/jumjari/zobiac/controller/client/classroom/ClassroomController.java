@@ -66,6 +66,5 @@ public class ClassroomController {
             "signs", classroomService.getSigns(buildingService.getKorFull(building))
         ));
         return "classroom-page";
-
-
+    }
 }
