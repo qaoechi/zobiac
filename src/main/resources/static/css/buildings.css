@@ -1,5 +1,6 @@
-@import url("fragments/buildings/map.css");
 @import url("fragments/header/header.css");
+@import url("fragments/buildings/map.css");
+@import url("fragments/buildings/form.css");
 
 main {
   padding-top: var(--header-height);
