@@ -23,7 +23,8 @@ public class ClassroomController {
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
             "classrooms", classroomService.getClassroomsByBuildingTrue("정문"),
-            "rooms", roomService.getRoomsByBuilding("정문")
+            "rooms", roomService.getRoomsByBuilding("정문"),
+            "signs", classroomService.getSigns("정문")
         ));
         return "classroom-page";
     }

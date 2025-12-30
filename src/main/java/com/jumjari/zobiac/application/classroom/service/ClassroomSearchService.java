@@ -1,6 +1,7 @@
 package com.jumjari.zobiac.application.classroom.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +19,9 @@ class ClassroomSearchService {
     private final ClassroomRepository repository;
     private final ClassroomMapper mapper;
 
-    Classroom getClassroomById(Long id) {
+    Optional<Classroom> getClassroomById(Long id) {
         return repository.findById(id)
-            .map(mapper::toDto)
-            .orElse(null);
+            .map(mapper::toDto);
     }
     List<Classroom> getClassroomsByBuildingTrue(String building) {
         return repository.findAllByRoom_Building_korFullAndIsActiveTrue(building)

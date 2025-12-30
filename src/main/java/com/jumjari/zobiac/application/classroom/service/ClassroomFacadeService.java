@@ -8,17 +8,25 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.Classroom;
+import com.jumjari.zobiac.application.classroom.dto.Sign;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class ClassroomFacadeService {
     private final ClassroomSearchService search;
+    private final SignService sign;
 
     public Classroom getById(Long id) {
-        return search.getClassroomById(id);
+        return search.getClassroomById(id)
+            .orElseThrow(() -> new EntityNotFoundException("classroom not found"));
     }
     public List<Classroom> getClassroomsByBuildingTrue(String building) {
         return search.getClassroomsByBuildingTrue(building);
+    }
+    public List<Sign> getSigns(String building) {
+        return sign.getSigns(building);
     }
 }

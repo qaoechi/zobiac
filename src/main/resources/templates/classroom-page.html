@@ -12,5 +12,11 @@
         <div th:each="classroom: ${classrooms}">
             <span th:text="${classroom.name}"></span>
         </div>
+        <div th:each="sign: ${signs}">
+            <div th:text="${sign.number}"></div>
+            <div th:text="${sign.placard}"></div>
+            <div th:text="${sign.front}"></div>
+            <div th:text="${sign.back}"></div>
+        </div>
     </body>
 </html>
