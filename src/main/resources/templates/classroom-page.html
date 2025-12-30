@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>점자리</title>
+        <link th:href="@{/css/classroom.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div th:text="${building_name}">현재 건물</div>
+        <a th:href="@{/client/building}" id="go-back">뒤로가기</a>
+        <a th:href="@{'/client/classroom/' + ${url} + '/editor'}" id="modify">수정</a>
+        <a th:href="@{'/client/classroom/' + ${url} + '/history'}" id="record">기록</a>
+
+        <div id="dashboard">
+            <div th:replace="~{fragments/classroom/dashboard/rest::rest}"></div>
+            <div th:replace="~{fragments/classroom/dashboard/waiting::waiting}"></div>
+            <div th:replace="~{fragments/classroom/dashboard/warning::warning}"></div>
+        </div>
+        <div th:replace="~{fragments/classroom/dashboard/details::details}"></div>
+        <div th:replace="~{fragments/classroom/dashboard/overview::overview}"></div>
+    </body>
+</html>

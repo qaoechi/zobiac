@@ -1,0 +1,5 @@
+@import url("fragments/classroom/dashboard/dashboard.css");
+
+#classroom {
+    background-color: beige;
+}
