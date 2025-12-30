@@ -5,8 +5,21 @@ var map = new naver.maps.Map('map', {
 
 const buildingDiv = new Map();
 const divMarker = new Map();
+let buildings = [];
 
-buildings.forEach(building => {
+async function loadBuildings() {
+    try {
+        const response = await fetch('buildings');
+        if (!response.ok) throw new Error("서버 오류");
+        return await response.json();
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async function() {
+    buildings = await loadBuildings();
+    buildings.forEach(building => {
     const constentString = `<div class="marker-div">
     <a href="/client/classroom/${building.engShort}">${building.korFull}</a>
 </div>`;
@@ -25,7 +38,8 @@ buildings.forEach(building => {
     })
 
     funcMarker(infowindow, building.engShort);
-});
+    });
+})
 
 function funcMarker(infowindow, name) {
     naver.maps.Event.addListener(divMarker.get(name), "click", function(e) {

@@ -1,12 +1,14 @@
 package com.jumjari.zobiac.controller.client.classroom;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jumjari.zobiac.application.building.dto.Building;
 import com.jumjari.zobiac.application.building.service.BuildingFacadeService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,9 +21,12 @@ public class ClassroomController {
 
     @GetMapping("/building")
     public String chooseBuilding(Model model) {
-        model.addAllAttributes(Map.of(
-            "buildings", buildingService.getBuildings()
-        ));
         return "building-page";
+    }
+
+    @GetMapping("/buildings")
+    @ResponseBody
+    public List<Building> getBuildings() {
+        return buildingService.getBuildings();
     }
 }
