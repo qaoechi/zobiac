@@ -1,0 +1,15 @@
+@import url("fragments/buildings/map.css");
+@import url("fragments/header/header.css");
+
+main {
+  padding-top: var(--header-height);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
