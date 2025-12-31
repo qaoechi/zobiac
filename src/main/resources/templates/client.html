@@ -4,36 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>점자리</title>
-        <link th:href="@{/css/buildings.css}" rel="stylesheet">
-        <link th:href="@{/css/classroom.css}" rel="stylesheet">
+        <th:block th:replace="~{fragments/head::head(${main})}"></th:block>
     </head>
     <body>
         <header>
-            <div th:replace="~{fragments/header/navigation::navigation}"></div>
-            <div th:replace="~{fragments/header/mypage::mypage}"></div>
+            <div th:replace="~{fragments/header/header::header-facade}"></div>
         </header>
         <main>
-
             <th:block th:switch="${main}">
-
                 <th:block th:case="buildings">
-                    <div th:replace="~{fragments/buildings/building-form::form}"></div>
-                    <div th:replace="~{fragments/buildings/map::map}"></div>
+                    <div th:replace="~{fragments/buildings/buildings::buildings-facade(${buildings})}"></div>
                 </th:block>
-
                 <th:block th:case="dashboard">
-                    <div th:text="${building_name}">현재 건물</div>
-                    <a th:href="@{/client/building}" id="go-back">뒤로가기</a>
-                    <a th:href="@{'/client/classroom/' + ${url} + '/editor'}" id="modify">수정</a>
-                    <a th:href="@{'/client/classroom/' + ${url} + '/history'}" id="record">기록</a>
-
-                    <div id="dashboard">
-                        <div th:replace="~{fragments/classroom/dashboard/rest::rest}"></div>
-                        <div th:replace="~{fragments/classroom/dashboard/waiting::waiting}"></div>
-                        <div th:replace="~{fragments/classroom/dashboard/warning::warning}"></div>
-                    </div>
-                    <div th:replace="~{fragments/classroom/dashboard/details::details}"></div>
-                    <div th:replace="~{fragments/classroom/dashboard/overview::overview}"></div>
+                    <div th:replace="~{fragments/classroom/tools::tools(${url}, ${building_name})}"></div>
+                    <div th:replace="~{fragments/classroom/dashboard/dashboard::dashboard(${signs})}"></div>
+                    
+                    
                 </th:block>                
             </th:block>
         </main>

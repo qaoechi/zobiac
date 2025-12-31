@@ -1,0 +1,10 @@
+<th:block th:fragment="head(main)">
+    <th:block th:switch="${main}">
+        <th:block th:case="buildings">
+            <link th:href="@{/css/buildings.css}" rel="stylesheet">
+        </th:block>
+        <th:block th:case="dashboard">
+            <link th:href="@{/css/classroom.css}" rel="stylesheet">
+        </th:block>
+    </th:block>
+</th:block>
