@@ -1,5 +1,8 @@
 @import url("fragments/header/header.css");
 
+main {
+  padding-top: var(--header-height);
+}
 body {
     margin: 0;
     padding: 0;

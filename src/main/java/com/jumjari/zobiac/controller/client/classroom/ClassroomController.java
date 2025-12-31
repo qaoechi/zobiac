@@ -28,9 +28,10 @@ public class ClassroomController {
     @GetMapping("/building")
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
+            "main", "buildings",
             "buildings", buildingService.getBuildings()
         ));
-        return "building-page";
+        return "client";
     }
 
     @GetMapping("/buildings")
@@ -44,13 +45,12 @@ public class ClassroomController {
         @RequestParam("option") String option,
         @RequestParam("name") String name
     ) {
-        System.out.println(buildingService.getByInput(name));
         if (!option.isBlank()) {
             return "redirect:/client/classroom/" + option;
         } else {
             if (name == null || name.isBlank()) return "redirect:/client/building";
             return buildingService.getByInput(name)
-                .map(n -> "redirect:/client/" + n)
+                .map(n -> "redirect:/client/classroom/" + n)
                 .orElse("redirect:/client/building");
         }
     }
@@ -61,11 +61,11 @@ public class ClassroomController {
         Model model
     ) {
         model.addAllAttributes(Map.of(
+            "main", "dashboard",
             "building_name", buildingService.getKorFull(building),
             "url", building,
             "signs", classroomService.getSigns(buildingService.getKorFull(building))
         ));
-        return "classroom-page";
-
-
+        return "client";
+    }
 }

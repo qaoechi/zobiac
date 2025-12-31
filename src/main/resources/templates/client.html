@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>점자리</title>
+        <th:block th:replace="~{fragments/head::head(${main})}"></th:block>
+    </head>
+    <body>
+        <header>
+            <div th:replace="~{fragments/header/header::header-facade}"></div>
+        </header>
+        <main>
+            <th:block th:switch="${main}">
+                <th:block th:case="buildings">
+                    <div th:replace="~{fragments/buildings/buildings::buildings-facade(${buildings})}"></div>
+                </th:block>
+                <th:block th:case="dashboard">
+                    <div th:replace="~{fragments/classroom/tools::tools(${url}, ${building_name})}"></div>
+                    <div th:replace="~{fragments/classroom/dashboard/dashboard::dashboard(${signs})}"></div>
+                    
+                    
+                </th:block>                
+            </th:block>
+        </main>
+    </body>
+</html>
