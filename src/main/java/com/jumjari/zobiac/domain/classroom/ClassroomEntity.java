@@ -2,6 +2,8 @@ package com.jumjari.zobiac.domain.classroom;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -15,8 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.domain.direction.DirectionEntity;
-import com.jumjari.zobiac.domain.door_type.DoorTypeEntity;
 import com.jumjari.zobiac.domain.room.RoomEntity;
 
 @Entity
@@ -44,21 +44,13 @@ public class ClassroomEntity {
     @Column(name = "room_name", length = 100)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-        name = "direction_id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "fk_direction")
-    )
-    private DirectionEntity direction;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "direction", length = 7, nullable = false)
+    private Direction direction;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-        name = "door_type_id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "fk_type")
-    )
-    private DoorTypeEntity type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "door_type", length = 20, nullable = false)
+    private DoorType type;
 
     @Column(name = "door_count", nullable = false)
     private Byte count;

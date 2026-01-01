@@ -49,10 +49,10 @@ class SignService {
                     back = placard + " 뒤";
                 }
             }
-            if(classroom.getDirection().getDirection().equals("LEFT")) {
-                placard = "←" + placard;
-            } else if (classroom.getDirection().getDirection().equals("RIGHT")) {
-                placard = placard + "→";
+            switch (classroom.getDirection()) {
+                case LEFT -> placard = "←" + placard;
+                case RIGHT -> placard = placard + "→";
+                case NO_SIGN -> {}
             }
             memo = classroom.getMemo();
 

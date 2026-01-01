@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.application.direction.dto.Direction;
-import com.jumjari.zobiac.application.door_type.dto.DoorType;
 import com.jumjari.zobiac.application.room.dto.Room;
+import com.jumjari.zobiac.domain.classroom.Direction;
+import com.jumjari.zobiac.domain.classroom.DoorType;
 
 @AllArgsConstructor
 @NoArgsConstructor
