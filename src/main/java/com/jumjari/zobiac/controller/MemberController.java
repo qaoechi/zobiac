@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
-public class LoginController {
+public class MemberController {
     @GetMapping("/login")
     public String loginPage() {
         return "member";
