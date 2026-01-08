@@ -18,7 +18,7 @@ public class OAuthController {
         String url = "https://kauth.kakao.com/oauth/authorize" +
             "?client_id=" + clientId +
             "&redirect_uri=" + redirectUri + 
-            "response_type=code";
+            "&response_type=code";
 
         return "redirect:" + url;
     }
