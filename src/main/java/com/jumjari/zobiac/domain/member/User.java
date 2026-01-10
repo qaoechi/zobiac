@@ -9,6 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 import lombok.Getter;
@@ -37,7 +38,12 @@ public class User {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    public User create(Long kakaoId) {
+    @PrePersist
+    public void PrePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public static User create(Long kakaoId) {
         User user = new User();
         user.kakaoId = kakaoId;
         user.role = Role.ROLE_USER;
