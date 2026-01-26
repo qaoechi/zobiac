@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.infrastructure.oauth.KakaoTokenReponse;
 import com.jumjari.zobiac.infrastructure.oauth.KakaoUserInfo;
+import com.jumjari.zobiac.infrastructure.security.LoginResult;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ public class KakaoOauthService {
         return "redirect:" + url;
     }
 
-    public String login(String code) {
+    public LoginResult login(String code) {
         KakaoTokenReponse token = webClient.post()
             .uri(tokenUri)
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
