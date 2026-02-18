@@ -44,14 +44,19 @@ public class OAuthController {
         ) throws IOException {
         LoginResult result = service.login(code);
 
-        Cookie cookie = new Cookie("refresh_token", result.refresh());
-        cookie.setHttpOnly(true);
-        cookie.setSecure(false);
-        cookie.setPath("/auth/refresh");
-        cookie.setMaxAge(60 * 60 * 24 * 7);
+        Cookie accessCookie = new Cookie("access_token", result.access());
+        accessCookie.setHttpOnly(true);
+        accessCookie.setPath("/");
+        accessCookie.setMaxAge(60 * 30);
 
-        response.addCookie(cookie);
-        // response.sendRedirect("/");
+        Cookie refreshCookie = new Cookie("refresh_token", result.refresh());
+        refreshCookie.setHttpOnly(true);
+        // cookie.setSecure(true);  //배포할때
+        refreshCookie.setPath("/auth/refresh");
+        refreshCookie.setMaxAge(60 * 60 * 24 * 7);
+
+        response.addCookie(accessCookie);
+        response.addCookie(refreshCookie);
         return "redirect:/";
     }
     

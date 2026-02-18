@@ -35,7 +35,9 @@ public class KakaoOauthService {
             "?client_id=" + clientId +
             "&redirect_uri=" + redirectUri + 
             "&response_type=code" +
-            "&scope=profile_nickname";
+            "&scope=profile_nickname"
+            // + "&prompt=login"
+            ;
 
         return "redirect:" + url;
     }
