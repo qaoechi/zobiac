@@ -38,7 +38,7 @@ public class OAuthController {
         return service.getKakaoRedirectUrl();
     }
     @GetMapping("/kakao/callback")
-    public void kakaoCallback(
+    public String kakaoCallback(
             @RequestParam String code,
             HttpServletResponse response
         ) throws IOException {
@@ -51,11 +51,8 @@ public class OAuthController {
         cookie.setMaxAge(60 * 60 * 24 * 7);
 
         response.addCookie(cookie);
-
-        // return ResponseEntity.ok()
-        //     .header(HttpHeaders.AUTHORIZATION, "Bearer " + result.access())
-        //     .build();
-        response.sendRedirect("/");
+        // response.sendRedirect("/");
+        return "redirect:/";
     }
     
     @PostMapping("/refresh")
@@ -66,10 +63,10 @@ public class OAuthController {
         long id = jwt.getUserId(refresh);
         User user = userSearch.getUser(id);
 
-        if (!refresh.equals(user.getRefreshToken())) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        // if (!refresh.equals(user.getRefreshToken())) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
         Member member = new Member(user);
-        String access = jwt.createToken(member, TokenType.ACCESS);
+        String access = jwt.createAccessToken(member);
 
         return ResponseEntity.ok(access);
     }    

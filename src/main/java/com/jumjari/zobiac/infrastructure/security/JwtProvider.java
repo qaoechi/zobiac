@@ -18,32 +18,25 @@ import com.jumjari.zobiac.application.member.Member;
 public class JwtProvider {
     private final Key key;
     private final long access;
-    private final long refresh;        
 
     public JwtProvider (
         @Value("${jwt.secret}") String secretKey,
-        @Value("${jwt.access}") long access,
-        @Value("${jwt.refresh}") long refresh
+        @Value("${jwt.access}") long access
     ) {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
         this.access = access;
-        this.refresh = refresh;
     }
 
-    public String createToken(Member member, TokenType type) {
+    public String createAccessToken(Member member) {
         Date now = new Date();
-        Date expiredAt = new Date(now.getTime() + (type == TokenType.ACCESS ? access : refresh));
+        Date expiredAt = new Date(now.getTime() +  access);
 
         JwtBuilder builder = Jwts.builder()
             .setSubject(String.valueOf(member.getId()))
-            .claim("type", type.toString())
+            .claim("role", member.getAuthorities().iterator().next().getAuthority())
+            .claim("blind", member.isBlind())
             .setIssuedAt(now)
             .setExpiration(expiredAt);
-            
-        if (type == TokenType.ACCESS) {
-            builder.claim("role", member.getAuthorities().iterator().next().getAuthority())
-                .claim("blind", member.isBlind());
-        }
         return builder.signWith(key, SignatureAlgorithm.HS256).compact();
     }
 

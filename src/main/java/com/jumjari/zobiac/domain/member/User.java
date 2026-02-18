@@ -37,11 +37,6 @@ public class User {
     private boolean blind;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-    @Column(name = "refresh_token", length = 512)
-    private String refreshToken;
-    @Column(name = "token_expired_at")
-    private LocalDateTime tokenExpiredAt;
-
 
     @PrePersist
     public void PrePersist() {
@@ -55,14 +50,5 @@ public class User {
         user.blind = false;
 
         return user;
-    }
-
-    public void updateRefreshToken(String token, LocalDateTime expiredAt) {
-        this.refreshToken = token;
-        this.tokenExpiredAt = expiredAt;
-    }
-    public void clearToken() {
-        this.refreshToken = null;
-        this.tokenExpiredAt = null;
     }
 }
