@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.member.Member;
 import com.jumjari.zobiac.domain.member.User;
 import com.jumjari.zobiac.domain.refresh_token.RefreshToken;
-import com.jumjari.zobiac.domain.refresh_token.RefreshTokenRepository;
 import com.jumjari.zobiac.infrastructure.oauth.KakaoUserInfo;
 import com.jumjari.zobiac.infrastructure.security.JwtProvider;
 import com.jumjari.zobiac.infrastructure.security.LoginResult;
@@ -22,7 +21,7 @@ import com.jumjari.zobiac.infrastructure.security.RefreshTokenGenerator;
 @Transactional
 public class OAuthLoginService {
     private final KakaoUserService kakao;
-    private final RefreshTokenRepository repository;
+    private final RefreshTokenService service;
     private final JwtProvider jwt;
     private final RefreshTokenGenerator generator;
 
@@ -33,14 +32,14 @@ public class OAuthLoginService {
         User user = kakao.findORCreate(kakoInfo);
         Member member = new Member(user);
 
-        repository.deleteAllByUser(user);
+        service.deleteAllByUser(user);
 
         String refreshTokenValue = generator.generate();
         LocalDateTime expiresAt = LocalDateTime.now().plusSeconds(refresh / 1000);
 
         RefreshToken refreshToken = RefreshToken.create(user, refreshTokenValue, expiresAt);
 
-        repository.save(refreshToken);
+        service.save(refreshToken);
         String access = jwt.createAccessToken(member);
         
         return new LoginResult(access, refreshTokenValue);

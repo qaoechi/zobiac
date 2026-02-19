@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.controller;
+package com.jumjari.zobiac.controller.member;
 
 import java.io.IOException;
 
@@ -52,7 +52,7 @@ public class OAuthController {
         Cookie refreshCookie = new Cookie("refresh_token", result.refresh());
         refreshCookie.setHttpOnly(true);
         // cookie.setSecure(true);  //배포할때
-        refreshCookie.setPath("/auth/refresh");
+        refreshCookie.setPath("/");
         refreshCookie.setMaxAge(60 * 60 * 24 * 7);
 
         response.addCookie(accessCookie);
@@ -67,8 +67,6 @@ public class OAuthController {
         
         long id = jwt.getUserId(refresh);
         User user = userSearch.getUser(id);
-
-        // if (!refresh.equals(user.getRefreshToken())) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
         Member member = new Member(user);
         String access = jwt.createAccessToken(member);
