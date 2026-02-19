@@ -2,6 +2,7 @@ package com.jumjari.zobiac.controller.member;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,11 @@ public class OAuthController {
     private final UserSearchService userSearch;
     private final JwtProvider jwt;
 
+    @Value("${jwt.access}")
+    private long access;
+    @Value("${jwt.refresh}")
+    private long refresh;
+
     @GetMapping("/kakao")
     public String redirectToKakao() {
         return service.getKakaoRedirectUrl();
@@ -47,13 +53,13 @@ public class OAuthController {
         Cookie accessCookie = new Cookie("access_token", result.access());
         accessCookie.setHttpOnly(true);
         accessCookie.setPath("/");
-        accessCookie.setMaxAge(60 * 30);
+        accessCookie.setMaxAge((int) (access / 1000));
 
         Cookie refreshCookie = new Cookie("refresh_token", result.refresh());
         refreshCookie.setHttpOnly(true);
         // cookie.setSecure(true);  //배포할때
         refreshCookie.setPath("/");
-        refreshCookie.setMaxAge(60 * 60 * 24 * 7);
+        refreshCookie.setMaxAge((int) (refresh / 1000));
 
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
