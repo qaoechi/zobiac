@@ -42,6 +42,6 @@ public class OAuthLoginService {
         service.save(refreshToken);
         String access = jwt.createAccessToken(member);
         
-        return new LoginResult(access, refreshTokenValue);
+        return new LoginResult(access, refreshToken);
     }
 }

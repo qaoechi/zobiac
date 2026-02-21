@@ -18,21 +18,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.member.Member;
 import com.jumjari.zobiac.application.member.service.KakaoOauthService;
-import com.jumjari.zobiac.application.member.service.UserSearchService;
-import com.jumjari.zobiac.domain.member.User;
-import com.jumjari.zobiac.infrastructure.security.JwtProvider;
+import com.jumjari.zobiac.application.member.service.RefreshTokenService;
 import com.jumjari.zobiac.infrastructure.security.LoginResult;
-import com.jumjari.zobiac.infrastructure.security.TokenType;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/oauth")
 public class OAuthController {
     private final KakaoOauthService service;
-    private final UserSearchService userSearch;
-    private final JwtProvider jwt;
+    private final RefreshTokenService refreshService;
 
     @Value("${jwt.access}")
     private long access;
@@ -53,13 +48,13 @@ public class OAuthController {
         Cookie accessCookie = new Cookie("access_token", result.access());
         accessCookie.setHttpOnly(true);
         accessCookie.setPath("/");
-        accessCookie.setMaxAge((int) (access / 1000));
+        accessCookie.setMaxAge((int)(access / 1000));
 
-        Cookie refreshCookie = new Cookie("refresh_token", result.refresh());
+        Cookie refreshCookie = new Cookie("refresh_token", result.refresh().getToken());
         refreshCookie.setHttpOnly(true);
         // cookie.setSecure(true);  //배포할때
         refreshCookie.setPath("/");
-        refreshCookie.setMaxAge((int) (refresh / 1000));
+        refreshCookie.setMaxAge((int)(refresh / 1000));
 
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
@@ -68,15 +63,21 @@ public class OAuthController {
     
     @PostMapping("/refresh")
     @ResponseBody
-    public ResponseEntity<String> refreshToken(@CookieValue("refresh_token") String refresh) {        
-        if (jwt.getTokenType(refresh) != TokenType.REFRESH) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public ResponseEntity<?> refreshToken(
+        @CookieValue(value = "refresh_token", required = false) String refresh,
+        HttpServletResponse response
+    ) {
+        if (refresh == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         
-        long id = jwt.getUserId(refresh);
-        User user = userSearch.getUser(id);
+        LoginResult result = refreshService.refresh(refresh);
 
-        Member member = new Member(user);
-        String access = jwt.createAccessToken(member);
+        Cookie accessCookie = new Cookie("access_token", result.access());
+        accessCookie.setHttpOnly(true);
+        accessCookie.setPath("/");
+        accessCookie.setMaxAge((int)(access / 1000));
 
-        return ResponseEntity.ok(access);
-    }    
+        response.addCookie(accessCookie);
+
+        return ResponseEntity.ok().build();
+    }
 }

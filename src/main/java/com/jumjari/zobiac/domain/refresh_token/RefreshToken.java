@@ -12,13 +12,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import com.jumjari.zobiac.domain.member.User;
 
 @Entity
 @NoArgsConstructor
+@Getter
 @Table(name = "refresh_tokens")
 public class RefreshToken {
     @Id
