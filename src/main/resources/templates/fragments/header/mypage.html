@@ -12,9 +12,9 @@
                 <button type="submit" onclick="refreshToken()">연장</button>
             </li>
         </th:block>
-        <li sec:authorize="isAnonymous()">
+        <!-- <li sec:authorize="isAnonymous()">
             <a th:href="@{/member/login}">로그인 폼</a>
-        </li>
+        </li> -->
     </ul>
 
     <script th:src="@{/js/refreshToken.js}"></script>
