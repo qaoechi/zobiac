@@ -1,5 +1,21 @@
 <div th:fragment="mypage" id="mypage">
-    마이페이지
-    <a href="">프로필</a>
-    <a href="">로그인/아웃</a>
+    <span>my page</span>
+    <ul>
+        <li><a th:href="@{/client/profile}">프로필</a></li>
+        <th:block sec:authorize="isAuthenticated()">
+            <li>
+                <form th:action="@{/member/logout}" method="post">
+                    <button type="submit">로그아웃</button>
+                </form>
+            </li>
+            <li>
+                <button type="submit" onclick="refreshToken()">연장</button>
+            </li>
+        </th:block>
+        <!-- <li sec:authorize="isAnonymous()">
+            <a th:href="@{/member/login}">로그인 폼</a>
+        </li> -->
+    </ul>
+
+    <script th:src="@{/js/refreshToken.js}"></script>
 </div>
