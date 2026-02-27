@@ -17,12 +17,12 @@ public class OAuthUserService {
     private final UserRepository userRepository;
     private final OauthAccountRepository oauthRepository;
 
-    public User findORCreate(String provider, String prividerId) {
-        return oauthRepository.findByProviderAndProviderId(provider, prividerId)
+    public User findORCreate(String provider, String providerId) {
+        return oauthRepository.findByProviderAndProviderId(provider, providerId)
             .map(OauthAccount::getUser)
             .orElseGet(() -> {
                 User user = userRepository.save(User.create());
-                OauthAccount account = OauthAccount.create(user, provider, provider);
+                OauthAccount account = OauthAccount.create(user, provider, providerId);
                 oauthRepository.save(account);
 
                 return userRepository.save(user);
