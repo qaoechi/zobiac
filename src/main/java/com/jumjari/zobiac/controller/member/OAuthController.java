@@ -58,7 +58,9 @@ public class OAuthController {
 
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
-        return "redirect:/";
+
+        if (result.firstLogin()) return "redirect:/client/profile";
+        return "redirect:/home";
     }
     
     @PostMapping("/refresh")

@@ -41,7 +41,7 @@ public class RefreshTokenService {
         Member member = new Member(refreshToken.getUser());
         String access = jwt.createAccessToken(member);
 
-        return new LoginResult(access, refreshToken);
+        return new LoginResult(access, refreshToken, !refreshToken.getUser().isCompleted());
     }
 
 }
