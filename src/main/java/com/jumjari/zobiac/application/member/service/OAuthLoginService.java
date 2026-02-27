@@ -19,7 +19,7 @@ import com.jumjari.zobiac.infrastructure.security.RefreshTokenGenerator;
 @RequiredArgsConstructor
 @Transactional
 public class OAuthLoginService {
-    private final KakaoUserService oauthUserService;
+    private final OAuthUserService oauthUserService;
     private final RefreshTokenService tokenService;
     private final JwtProvider jwt;
     private final RefreshTokenGenerator generator;

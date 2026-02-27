@@ -13,7 +13,7 @@ import com.jumjari.zobiac.domain.member.UserRepository;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class KakaoUserService {
+public class OAuthUserService {
     private final UserRepository userRepository;
     private final OauthAccountRepository oauthRepository;
 
