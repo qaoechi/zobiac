@@ -62,6 +62,6 @@ public class KakaoOauthService {
             .retrieve()
             .bodyToMono(KakaoUserInfo.class)
             .block();
-        return service.login(info);
+        return service.login("kakao", info.getId().toString());
     }
 }

@@ -18,16 +18,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "kakao_users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "kakao_id", nullable = false, unique = true)
-    private Long kakaoId;
     @Column(name = "username", length = 30)
     private String username;
+    @Column(name = "student_number")
+    private Integer number;
     @Column(name = "nickname", length = 30)
     private String nickname;
     @Enumerated(EnumType.STRING)
@@ -37,18 +37,24 @@ public class User {
     private boolean blind;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+    @Column(name = "profile_completed", nullable = false)
+    private boolean completed;
 
     @PrePersist
     public void PrePersist() {
         this.createdAt = LocalDateTime.now();
+        this.role = Role.ROLE_USER;
+        this.blind = false;
+        this.completed = false;
     }
 
-    public static User create(Long kakaoId) {
-        User user = new User();
-        user.kakaoId = kakaoId;
-        user.role = Role.ROLE_USER;
-        user.blind = false;
-
-        return user;
+    public static User create() {
+        return new User();
+    }
+    
+    public void completeProfile(String username, Integer number, String nickname) {
+        this.username = username;
+        this.nickname = nickname;
+        this.number = number;
     }
 }
