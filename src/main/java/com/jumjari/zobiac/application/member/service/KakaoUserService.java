@@ -5,23 +5,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
+import com.jumjari.zobiac.domain.member.OauthAccount;
+import com.jumjari.zobiac.domain.member.OauthAccountRepository;
 import com.jumjari.zobiac.domain.member.User;
 import com.jumjari.zobiac.domain.member.UserRepository;
-import com.jumjari.zobiac.infrastructure.oauth.KakaoUserInfo;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class KakaoUserService {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final OauthAccountRepository oauthRepository;
 
-    public User findORCreate(KakaoUserInfo kakao) {
-        Long kakoId = kakao.getId();
-
-        return repository.findByKakaoId(kakoId)
+    public User findORCreate(String provider, String prividerId) {
+        return oauthRepository.findByProviderAndProviderId(provider, prividerId)
+            .map(OauthAccount::getUser)
             .orElseGet(() -> {
-                User user = User.create(kakoId);
-                return repository.save(user);
+                User user = userRepository.save(User.create());
+                OauthAccount account = OauthAccount.create(user, provider, provider);
+                oauthRepository.save(account);
+
+                return userRepository.save(user);
             });
     }
 }
