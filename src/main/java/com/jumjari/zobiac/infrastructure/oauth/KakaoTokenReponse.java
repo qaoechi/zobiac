@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 public class KakaoTokenReponse {
     @JsonProperty("access_token")
     private String accessToken;
-    @JsonProperty("access_type")
-    private String accessType;
-    @JsonProperty("refresh_type")
-    private String refreshType;
+    @JsonProperty("token_type")
+    private String tokenType;
+    @JsonProperty("refresh_token")
+    private String refreshToken;
     @JsonProperty("expires_in")
     private int expiresIn;
+    @JsonProperty("refresh_token_expires_in")
+    private int refreshTokenExpiresIn;
 }
