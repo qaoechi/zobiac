@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jumjari.zobiac.application.member.ProfileRequest;
 import com.jumjari.zobiac.domain.member.User;
 import com.jumjari.zobiac.domain.member.UserRepository;
 
@@ -30,5 +31,15 @@ public class UserSearchService {
     public User getByNickname(String nickname) {
         return repository.findByNickname(nickname)
             .orElseThrow(() -> new IllegalArgumentException(nickname + "not found"));
+    }
+    public void updateProfile(Long id, ProfileRequest request) {
+        User user = repository.findById(id)
+            .orElseThrow();
+        
+        user.updateProfile(
+            request.username(),
+            request.number(),
+            request.nickname()
+        );
     }
 }

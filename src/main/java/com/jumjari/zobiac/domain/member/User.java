@@ -52,9 +52,10 @@ public class User {
         return new User();
     }
     
-    public void completeProfile(String username, Integer number, String nickname) {
+    public void updateProfile(String username, Integer number, String nickname) {
         this.username = username;
         this.nickname = nickname;
         this.number = number;
+        this.completed = true;
     }
 }
