@@ -20,7 +20,10 @@
                     <div th:replace="~{fragments/classroom/dashboard/dashboard::dashboard(${signs})}"></div>
                     
                     
-                </th:block>                
+                </th:block> 
+                <th:block th:case="profile">
+                    <div th:replace="~{fragments/profile/profile::setting-profile}"></div>
+                </th:block>
             </th:block>
         </main>
     </body>

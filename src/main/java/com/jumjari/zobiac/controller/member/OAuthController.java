@@ -58,7 +58,9 @@ public class OAuthController {
 
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
-        return "redirect:/";
+
+        if (result.firstLogin()) return "redirect:/client/profile";
+        return "redirect:/home";
     }
     
     @PostMapping("/refresh")
@@ -76,7 +78,13 @@ public class OAuthController {
         accessCookie.setPath("/");
         accessCookie.setMaxAge((int)(access / 1000));
 
+        Cookie refreshCookie = new Cookie("refresh_token", result.refresh().getToken());
+        refreshCookie.setHttpOnly(true);
+        refreshCookie.setPath("/");
+        refreshCookie.setMaxAge((int)(access / 1000));
+
         response.addCookie(accessCookie);
+        response.addCookie(refreshCookie);
 
         return ResponseEntity.ok().build();
     }
