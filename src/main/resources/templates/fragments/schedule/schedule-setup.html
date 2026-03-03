@@ -17,5 +17,8 @@
     </table>
     <button onclick="submitSchedule()">저장</button>
 
+    <script th:inline="javascript">
+        const meetingId = /*[[${meeingId}]]*/ 0;
+    </script>
     <script th:src="@{/js/schedule-slot.js}"></script>
 </div>
