@@ -15,6 +15,5 @@ public class Availability {
     private Long id;
     private Participant participant;
     private Week week;
-    private Integer start;
-    private Integer end;
+    private Integer slot;
 }

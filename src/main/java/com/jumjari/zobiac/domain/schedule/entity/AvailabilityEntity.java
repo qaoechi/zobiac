@@ -33,8 +33,6 @@ public class AvailabilityEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "week", nullable = false)
     private Week week;
-    @Column(name = "start_time", nullable = false)
-    private Integer start;
-    @Column(name = "end_time", nullable = false)
-    private Integer end;
+    @Column(name = "time_slot", nullable = false)
+    private Integer slot;
 }
