@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +23,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "time_availabilities")
+@Table(name = "time_availabilities",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"participant_id", "week", "time_slot"})
+        })
 public class AvailabilityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
