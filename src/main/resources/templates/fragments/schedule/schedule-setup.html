@@ -1,0 +1,21 @@
+<div th:fragment="schedule-setup" id="schedule-setup">
+    <table id="time-table">
+        <thead>
+            <tr>
+                <th>schedule</th>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button onclick="submitSchedule()">저장</button>
+
+    <script th:src="@{/js/schedule-slot.js}"></script>
+</div>

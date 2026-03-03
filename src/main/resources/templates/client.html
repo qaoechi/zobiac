@@ -24,6 +24,9 @@
                 <th:block th:case="profile">
                     <div th:replace="~{fragments/profile/profile::setting-profile}"></div>
                 </th:block>
+                <th:block th:case="schedule">
+                    <div th:replace="~{fragments/schedule/schedule-setup::schedule-setup}"></div>
+                </th:block>
             </th:block>
         </main>
     </body>
