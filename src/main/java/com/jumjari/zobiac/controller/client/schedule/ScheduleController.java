@@ -25,6 +25,18 @@ public class ScheduleController {
         ));
         return "client";
     }
+    @GetMapping("/schedule/{meeting-id}")
+    public String selectSchedule(
+        Model model,
+        @PathVariable("meeting-id") String meetingId
+    ) {
+        model.addAllAttributes(Map.of(
+            "main", "schedule",
+            "sub", "",
+            "meetingId", meetingId
+        ));
+        return "client";
+    }
     
     @PostMapping("/schedule/{meeting-id}/update")
     public String saveSchedule(
