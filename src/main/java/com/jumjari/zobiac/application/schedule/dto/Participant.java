@@ -16,7 +16,7 @@ import com.jumjari.zobiac.domain.member.User;
 public class Participant {
     private Long id;
     private Meeting meeting;
-    private User createdBy;
+    private User user;
     private String name;
     private String token;
     private List<Availability> availabilities;

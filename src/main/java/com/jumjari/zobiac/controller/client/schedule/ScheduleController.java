@@ -3,6 +3,7 @@ package com.jumjari.zobiac.controller.client.schedule;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.schedule.dto.Availability;
+import com.jumjari.zobiac.application.schedule.dto.AvailabilityRequest;
 import com.jumjari.zobiac.application.schedule.service.MeetingService;
+import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class ScheduleController {
     private final MeetingService meetingService;
+    private final ScheduleService schedule;
 
     @GetMapping("/schedule")
     public String schedule(Model model) {
@@ -48,12 +51,12 @@ public class ScheduleController {
     
     @PostMapping("/schedule/{meeting-id}/update")
     public String saveSchedule(
-        @PathVariable("meeting-id") String meetingId,
-        @CookieValue("guestToken") String token,
-        @RequestBody List<Availability> dtos
+        @PathVariable("meeting-id") Long meetingId,
+        @CookieValue(value = "guestToken", required = false) String token,
+        @RequestBody List<AvailabilityRequest> dtos,
+        Authentication auth
     ) {
-        //update(meetingId, toekn, dtos);
+        schedule.save(meetingId, auth, token, dtos);
         return "redirect:/client/schedule/" + meetingId;
     }
-    
 }

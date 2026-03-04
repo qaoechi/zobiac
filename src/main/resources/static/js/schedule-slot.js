@@ -1,6 +1,6 @@
 const tbody = document.querySelector("#time-table tbody");
-const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
+const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+let timeSlotCount = 0;
 for (let hour = 9; hour < 22; hour++) {
     for (let min of [0, 30]) {
         const tr = document.createElement("tr");
@@ -10,16 +10,17 @@ for (let hour = 9; hour < 22; hour++) {
         const startMin = min === 0 ? "00" : "30";
         const endMin = min === 0 ? "29" : "59";
         
-        timecell.innerText = `${startHour}:${startMin}~${startHour}:${endMin}`;
+        timecell.textContent = `${startHour}:${startMin}~${startHour}:${endMin}`;
         tr.appendChild(timecell);
 
         week.forEach(element => {
             const td = document.createElement("td");
             td.dataset.week = element;
-            td.dataset.time = timecell.innerText;
+            td.dataset.time = timeSlotCount;
             td.classList.add("time-slot");
             tr.appendChild(td);
         });
+        timeSlotCount++;
 
         tbody.appendChild(tr);
     }

@@ -18,6 +18,11 @@ public class MeetingService {
     private final MeetingRepository repository;
     private final MeetingMapper mapper;
 
+    public Meeting getById(Long id) {
+        return repository.findById(id)
+            .map(mapper::toDto)
+            .orElseThrow(() -> new IllegalArgumentException("meeting not found"));
+    }
     public List<Meeting> getAllPublic() {
         return repository.findAllByOpen(true)
             .stream()

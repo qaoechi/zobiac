@@ -2,14 +2,15 @@ package com.jumjari.zobiac.application.schedule.service;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jumjari.zobiac.application.schedule.dto.Availability;
-import com.jumjari.zobiac.application.schedule.dto.Meeting;
-import com.jumjari.zobiac.application.schedule.dto.Participant;
-
 import lombok.RequiredArgsConstructor;
+
+import com.jumjari.zobiac.application.schedule.dto.Availability;
+import com.jumjari.zobiac.application.schedule.dto.AvailabilityRequest;
+import com.jumjari.zobiac.application.schedule.dto.Participant;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +19,24 @@ public class ScheduleService {
     private final ParticipantSearchService partSearch;
     private final AvailabilitySearchService availSearch;
 
-    public void save(Meeting meeting, String token, List<Availability> dtos) {
-        Participant part = partSearch.getByMeetingAndToken(meeting, token);
+    public void save(Long meetingId, Authentication auth, String token, List<AvailabilityRequest> dtos) {
+        Participant part;
+        if (auth != null && auth.isAuthenticated()) {
+            part = partSearch.getUserOrCreate(meetingId, Long.parseLong(auth.getName()));
+        } else {
+            part = partSearch.getGuestOrCreate(meetingId, token);
+        }
         availSearch.deleteByParticipant(part);
 
-        for (Availability dto : dtos) {
-            Availability avail = new Availability(null, part, dto.getWeek(), dto.getSlot());
+        List<Availability> availabilities = dtos.stream()
+            .map(dto -> new Availability(
+                null,
+                part,
+                dto.getWeek(),
+                dto.getSlot()
+            ))
+            .toList();
 
-            availSearch.save(avail);
-        }
+        availSearch.saveAll(availabilities);
     }
 }

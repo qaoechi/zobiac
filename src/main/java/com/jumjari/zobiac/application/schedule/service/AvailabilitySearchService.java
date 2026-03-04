@@ -1,15 +1,17 @@
 package com.jumjari.zobiac.application.schedule.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.schedule.dto.Availability;
 import com.jumjari.zobiac.application.schedule.dto.Participant;
 import com.jumjari.zobiac.application.schedule.mapper.AvailabilityMapper;
 import com.jumjari.zobiac.application.schedule.mapper.ParticipantMapper;
 import com.jumjari.zobiac.domain.schedule.repository.AvailabilityRepository;
-
-import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +21,8 @@ class AvailabilitySearchService {
     private final AvailabilityMapper mapper;
     private final ParticipantMapper partMapper;
 
-    Availability save(Availability avail) {
-        return mapper.toDto(repository.save(mapper.toEntity(avail)));
+    void saveAll(List<Availability> availabilities) {
+        repository.saveAll(availabilities.stream().map(mapper::toEntity).toList());
     }
 
     void deleteByParticipant(Participant participant) {
