@@ -13,15 +13,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import lombok.RequiredArgsConstructor;
+
 import com.jumjari.zobiac.application.schedule.dto.Availability;
+import com.jumjari.zobiac.application.schedule.service.MeetingService;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/client")
 public class ScheduleController {
+    private final MeetingService meetingService;
+
     @GetMapping("/schedule")
     public String schedule(Model model) {
         model.addAllAttributes(Map.of(
-            "main", "schedule"
+            "main", "schedule",
+            "sub", "dashboard",
+            "meetings", meetingService.getAllPublic()
         ));
         return "client";
     }
@@ -32,7 +40,7 @@ public class ScheduleController {
     ) {
         model.addAllAttributes(Map.of(
             "main", "schedule",
-            "sub", "",
+            "sub", "setup",
             "meetingId", meetingId
         ));
         return "client";
