@@ -7,17 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.domain.member.User;
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class Participant {
-    private Long id;
-    private Meeting meeting;
-    private User user;
+public class ScheduleParticipantAvailabilityResponse {
+    private Long participantId;
     private String name;
-    private String token;
-    private List<Availability> availabilities;
+    private List<AvailabilityResponse> availabilities;
 }

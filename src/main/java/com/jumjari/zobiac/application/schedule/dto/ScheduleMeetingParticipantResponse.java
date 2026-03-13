@@ -7,14 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class Meeting {
-    private Long id;
-    private String title;
-    private String description;
-    private boolean open;
-    private List<ParticipantResponse> participants;
+public class ScheduleMeetingParticipantResponse {
+    private Long meetingId;
+    private List<ScheduleParticipantAvailabilityResponse> participants;
 }

@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.domain.schedule.entity.Week;
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class Availability {
+public class MeetingResponse {
     private Long id;
-    private Participant participant;
-    private Week week;
-    private Integer slot;
+    private String title;
+    private String description;
+    private boolean open;
 }
