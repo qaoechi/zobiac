@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="_csrf" th:content="${_csrf.token}">
+        <meta name="_csrf_header" th:content="${_csrf.headerName}">
         <title>점자리</title>
         <th:block th:replace="~{fragments/head::head(${main})}"></th:block>
     </head>
@@ -23,6 +26,9 @@
                 </th:block> 
                 <th:block th:case="profile">
                     <div th:replace="~{fragments/profile/profile::setting-profile}"></div>
+                </th:block>
+                <th:block th:case="schedule">
+                    <div th:replace="~{fragments/schedule/schedule-facade::schedule-facade(${sub}, ${meetings})}"></div>
                 </th:block>
             </th:block>
         </main>
