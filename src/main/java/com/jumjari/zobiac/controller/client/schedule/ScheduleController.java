@@ -25,7 +25,7 @@ import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 @RequestMapping("/client")
 public class ScheduleController {
     private final MeetingService meetingService;
-    private final ScheduleService schedule;
+    private final ScheduleService scheduleService;
 
     @GetMapping("/schedule")
     public String schedule(Model model) {
@@ -56,7 +56,7 @@ public class ScheduleController {
         @RequestBody List<AvailabilityRequest> dtos,
         Authentication auth
     ) {
-        schedule.save(meetingId, auth, token, dtos);
+        scheduleService.save(meetingId, auth, token, dtos);
         return "redirect:/client/schedule/" + meetingId;
     }
 }

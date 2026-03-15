@@ -8,35 +8,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.schedule.dto.Availability;
 import com.jumjari.zobiac.application.schedule.dto.AvailabilityRequest;
-import com.jumjari.zobiac.application.schedule.dto.Participant;
+import com.jumjari.zobiac.domain.schedule.entity.ParticipantEntity;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class ScheduleService {
-    private final ParticipantSearchService partSearch;
-    private final AvailabilitySearchService availSearch;
+    private final ParticipantService partService;
+    private final AvailabilityService availService;
 
     public void save(Long meetingId, Authentication auth, String token, List<AvailabilityRequest> dtos) {
-        Participant part;
+        ParticipantEntity part;
         if (auth != null && auth.isAuthenticated()) {
-            part = partSearch.getUserOrCreate(meetingId, Long.parseLong(auth.getName()));
+            part = partService.getUserOrCreate(meetingId, Long.parseLong(auth.getName()));
         } else {
-            part = partSearch.getGuestOrCreate(meetingId, token);
+            part = partService.getGuestOrCreate(meetingId, token);
         }
-        availSearch.deleteByParticipant(part);
-
-        List<Availability> availabilities = dtos.stream()
-            .map(dto -> new Availability(
-                null,
-                part,
-                dto.getWeek(),
-                dto.getSlot()
-            ))
-            .toList();
-
-        availSearch.saveAll(availabilities);
+        availService.deleteByParticipant(part.getId());
+        availService.saveAll(dtos, part);
     }
 }
