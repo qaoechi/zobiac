@@ -26,10 +26,14 @@ public class AvailabilityService {
         return mapper.toResponses(entities);
     }
 
-    public List<AvailabilityResponse> findAllByParticipant(Long id) {
+    public List<AvailabilityResponse> getAllByParticipant(Long id) {
         return mapper.toResponses(repository.findAllByParticipantId(id));
     }
 
+    public void flush() {
+        repository.flush();
+    }
+    
     public void deleteByParticipant(Long id) {
         repository.deleteAllByParticipantId(id);
     }

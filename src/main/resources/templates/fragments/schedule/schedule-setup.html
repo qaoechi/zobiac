@@ -1,4 +1,4 @@
-<div th:fragment="schedule-setup(${meetings})" id="schedule-setup">
+<div th:fragment="schedule-setup(meetings, avails)" id="schedule-setup">
     <table id="time-table">
         <thead>
             <tr>
@@ -19,6 +19,7 @@
 
     <script th:inline="javascript">
         const meetingId = /*[[${meetingId}]]*/ 0;
+        const avails = /*[[${avails}]]*/ [];
     </script>
     <script th:src="@{/js/schedule-slot.js}"></script>
     <script th:src="@{/js/schedule-submit.js}"></script>
