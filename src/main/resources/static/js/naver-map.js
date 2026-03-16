@@ -20,24 +20,24 @@ async function loadBuildings() {
 document.addEventListener("DOMContentLoaded", async function() {
     buildings = await loadBuildings();
     buildings.forEach(building => {
-    const constentString = `<div class="marker-div">
-    <a href="/client/classroom/${building.engShort}">${building.korFull}</a>
+        const constentString = `<div class="marker-div">
+        <a href="/client/classroom/${building.engShort}">${building.korFull}</a>
 </div>`;
 
-    buildingDiv.set(building.engShort, constentString);
+        buildingDiv.set(building.engShort, constentString);
 
-    const marker = new naver.maps.Marker({
-        map: map,
-        position: new naver.maps.LatLng(building.latitude, building.longitude)
-        
-    })
-    divMarker.set(building.engShort, marker);
+        const marker = new naver.maps.Marker({
+            map: map,
+            position: new naver.maps.LatLng(building.latitude, building.longitude)
+            
+        })
+        divMarker.set(building.engShort, marker);
 
-    const infowindow = new naver.maps.InfoWindow({
-        content: buildingDiv.get(building.engShort)
-    })
+        const infowindow = new naver.maps.InfoWindow({
+            content: buildingDiv.get(building.engShort)
+        })
 
-    funcMarker(infowindow, building.engShort);
+        funcMarker(infowindow, building.engShort);
     });
 })
 

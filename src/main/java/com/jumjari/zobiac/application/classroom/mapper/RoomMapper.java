@@ -1,10 +1,10 @@
-package com.jumjari.zobiac.application.room.mapper;
+package com.jumjari.zobiac.application.classroom.mapper;
 
 import org.mapstruct.Mapper;
 
 import com.jumjari.zobiac.application.building.mapper.BuildingMapper;
-import com.jumjari.zobiac.application.room.dto.Room;
-import com.jumjari.zobiac.domain.room.RoomEntity;
+import com.jumjari.zobiac.application.classroom.dto.Room;
+import com.jumjari.zobiac.domain.classroom.entity.RoomEntity;
 
 @Mapper(componentModel = "spring", uses = BuildingMapper.class)
 public interface RoomMapper {

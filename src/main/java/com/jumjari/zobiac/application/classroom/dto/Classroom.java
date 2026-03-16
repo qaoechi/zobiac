@@ -1,13 +1,12 @@
 package com.jumjari.zobiac.application.classroom.dto;
 
+import com.jumjari.zobiac.domain.classroom.entity.Direction;
+import com.jumjari.zobiac.domain.classroom.entity.DoorType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import com.jumjari.zobiac.application.room.dto.Room;
-import com.jumjari.zobiac.domain.classroom.Direction;
-import com.jumjari.zobiac.domain.classroom.DoorType;
 
 @AllArgsConstructor
 @NoArgsConstructor

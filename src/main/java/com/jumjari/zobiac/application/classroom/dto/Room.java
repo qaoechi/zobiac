@@ -1,11 +1,11 @@
-package com.jumjari.zobiac.application.room.dto;
+package com.jumjari.zobiac.application.classroom.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.application.building.dto.Building;
+import com.jumjari.zobiac.application.building.dto.BuildingDetail;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +13,7 @@ import com.jumjari.zobiac.application.building.dto.Building;
 @Setter
 public class Room {
     private Long roomId;
-    private Building building;
+    private BuildingDetail building;
     private String number;
     private Byte floor;
 }

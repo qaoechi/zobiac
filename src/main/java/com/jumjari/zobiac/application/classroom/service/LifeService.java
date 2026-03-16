@@ -1,13 +1,13 @@
-package com.jumjari.zobiac.application.room.service;
+package com.jumjari.zobiac.application.classroom.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.room.dto.Room;
-import com.jumjari.zobiac.application.room.mapper.RoomMapper;
-import com.jumjari.zobiac.domain.room.RoomRepository;
+import com.jumjari.zobiac.application.classroom.dto.Room;
+import com.jumjari.zobiac.application.classroom.mapper.RoomMapper;
+import com.jumjari.zobiac.domain.classroom.repository.RoomRepository;
 
 @Service
 @RequiredArgsConstructor
