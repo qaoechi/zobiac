@@ -9,9 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class BuildingDetail {
+public class BuildingSelectResponse {
     private Long id;
+    private String engShort;
     private String korFull;
-    private boolean campus;
-    private String korShort;
 }

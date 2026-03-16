@@ -26,7 +26,7 @@ public class BuildingController {
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
             "main", "buildings",
-            "buildings", service.getAllMarker()
+            "buildings", service.getAll()
         ));
         return "client";
     }
