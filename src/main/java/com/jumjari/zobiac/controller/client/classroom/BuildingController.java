@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.building.dto.Building;
-import com.jumjari.zobiac.application.building.service.BuildingFacadeService;
+import com.jumjari.zobiac.application.building.dto.BuildingMarkerResponse;
+import com.jumjari.zobiac.application.building.service.BuildingService;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class BuildingController {
-    private final BuildingFacadeService service;
+    private final BuildingService service;
 
     @GetMapping("/building")
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
             "main", "buildings",
-            "buildings", service.getBuildings()
+            "buildings", service.getAllMarker()
         ));
         return "client";
     }
 
     @GetMapping("/buildings")
     @ResponseBody
-    public List<Building> getBuildings() {
-        return service.getBuildings();
+    public List<BuildingMarkerResponse> getBuildingsMarker() {
+        return service.getAllMarker();
     }
 
     @PostMapping("move-building")
