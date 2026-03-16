@@ -26,7 +26,6 @@ public class ScheduleService {
             part = partService.getGuestOrCreate(meetingId, token);
         }
         availService.deleteByParticipant(part.getId());
-        availService.flush();
         availService.saveAll(dtos, part);
     }
 }

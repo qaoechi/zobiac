@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.schedule.dto.AvailabilityRequest;
 import com.jumjari.zobiac.application.schedule.service.AvailabilityService;
 import com.jumjari.zobiac.application.schedule.service.MeetingService;
-import com.jumjari.zobiac.application.schedule.service.ParticipantService;
 import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 
 @Controller
@@ -28,7 +27,6 @@ import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 public class ScheduleController {
     private final AvailabilityService availService;
     private final MeetingService meetingService;
-    private final ParticipantService partService;
     private final ScheduleService scheduleService;
 
     @GetMapping("/schedule")
@@ -46,13 +44,11 @@ public class ScheduleController {
         @PathVariable("meeting-id") Long meetingId,
         Authentication auth
     ) {
-        System.out.println(auth.getName());
-        // System.out.println(availService.getAllByParticipant(Long.parseLong(auth.getName())));
         model.addAllAttributes(Map.of(
             "main", "schedule",
             "sub", "setup",
             "meetingId", meetingId,
-            "avails", availService.getAllByParticipant(partService.getByUserIdAndMeetingId(auth, meetingId).getId())
+            "avails", availService.getAllByAuthAndMeeting(auth, meetingId)
         ));
         return "client";
     }

@@ -29,7 +29,7 @@ public class ParticipantService {
                 p.setMeeting(meetingService.getEntityById(meetingId));
                 p.setToken(token);
                 // p.setName();
-                return repository.save(p);
+                return repository.saveAndFlush(p);
             });
     }
     public ParticipantEntity getUserOrCreate(Long meetingId, Long userId) {
@@ -40,7 +40,7 @@ public class ParticipantService {
                 p.setMeeting(meetingService.getEntityById(meetingId));
                 p.setUser(user);
                 p.setName(user.getNickname());
-                return p;
+                return repository.saveAndFlush(p);
             });
     };
 
@@ -48,18 +48,9 @@ public class ParticipantService {
         return mapper.toResponse(
             (auth != null && auth.isAuthenticated()) ?
             repository.findByMeetingIdAndUserId(meetingId, Long.parseLong(auth.getName()))
-            .orElseThrow(() -> new IllegalArgumentException("participant not found")):
+            .orElse(null):
             repository.findByMeetingIdAndToken(meetingId, "asd")
-            .orElseThrow(() -> new IllegalArgumentException("participant not found"))
+            .orElse(null)
         );
-        // if (auth != null && auth.isAuthenticated()) {
-        //     return mapper.toResponse(
-        //         repository.findByMeetingIdAndUserId(meetingId, Long.parseLong(auth.getName()))
-        //         .orElseThrow(() -> new IllegalArgumentException("participant not found"))
-        //     );
-        // } else {
-        //     return mapper.toResponse(null)
-        // }
-        // return repository.
     }
 }
