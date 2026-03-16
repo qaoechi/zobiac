@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.Classroom;
+import com.jumjari.zobiac.application.classroom.dto.Room;
 import com.jumjari.zobiac.application.classroom.dto.Sign;
-import com.jumjari.zobiac.application.room.dto.Room;
 
 @Service
 @RequiredArgsConstructor
