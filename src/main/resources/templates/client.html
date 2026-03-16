@@ -28,7 +28,7 @@
                     <div th:replace="~{fragments/profile/profile::setting-profile}"></div>
                 </th:block>
                 <th:block th:case="schedule">
-                    <div th:replace="~{fragments/schedule/schedule-facade::schedule-facade(${sub}, ${meetings})}"></div>
+                    <div th:replace="~{fragments/schedule/schedule-facade::schedule-facade(${sub}, ${meetings}, ${avails})}"></div>
                 </th:block>
             </th:block>
         </main>

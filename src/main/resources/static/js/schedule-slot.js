@@ -1,6 +1,8 @@
 const tbody = document.querySelector("#time-table tbody");
 const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 let timeSlotCount = 0;
+const availsSet = new Set(avails.map(a => `${a.week},${a.slot}`));
+
 for (let hour = 9; hour < 22; hour++) {
     for (let min of [0, 30]) {
         const tr = document.createElement("tr");
@@ -18,6 +20,9 @@ for (let hour = 9; hour < 22; hour++) {
             td.dataset.week = element;
             td.dataset.time = timeSlotCount;
             td.classList.add("time-slot");
+
+            if (availsSet.has(`${element},${timeSlotCount}`)) td.classList.add("selected");
+
             tr.appendChild(td);
         });
         timeSlotCount++;

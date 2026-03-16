@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.schedule.dto.AvailabilityRequest;
+import com.jumjari.zobiac.application.schedule.service.AvailabilityService;
 import com.jumjari.zobiac.application.schedule.service.MeetingService;
 import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 
@@ -24,6 +25,7 @@ import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class ScheduleController {
+    private final AvailabilityService availService;
     private final MeetingService meetingService;
     private final ScheduleService scheduleService;
 
@@ -39,12 +41,14 @@ public class ScheduleController {
     @GetMapping("/schedule/{meeting-id}")
     public String selectSchedule(
         Model model,
-        @PathVariable("meeting-id") String meetingId
+        @PathVariable("meeting-id") Long meetingId,
+        Authentication auth
     ) {
         model.addAllAttributes(Map.of(
             "main", "schedule",
             "sub", "setup",
-            "meetingId", meetingId
+            "meetingId", meetingId,
+            "avails", availService.getAllByAuthAndMeeting(auth, meetingId)
         ));
         return "client";
     }

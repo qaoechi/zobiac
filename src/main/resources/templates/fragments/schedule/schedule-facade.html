@@ -1,11 +1,11 @@
-<div th:fragment="schedule-facade(sub, meetings)" id="schedule-facade">
+<div th:fragment="schedule-facade(sub, meetings, avails)" id="schedule-facade">
     <div th:text="${sub}"></div>
     <th:block th:switch="${sub}">
         <th:block th:case="dashboard">
             <div th:replace="~{fragments/schedule/dashboard::schedule-dashboard(${meetings})}"></div>
         </th:block>
         <th:block th:case="setup">
-            <div th:replace="~{fragments/schedule/schedule-setup::schedule-setup(${meetings})}"></div>
+            <div th:replace="~{fragments/schedule/schedule-setup::schedule-setup(${meetings}, ${avails})}"></div>
         </th:block>
     </th:block>
 </div>
