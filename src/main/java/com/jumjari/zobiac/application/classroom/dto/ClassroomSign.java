@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Sign {
+public class ClassroomSign {
     private Long id;
     private String number;
     private String placard;

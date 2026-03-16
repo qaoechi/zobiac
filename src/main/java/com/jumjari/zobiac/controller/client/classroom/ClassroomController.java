@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.building.service.BuildingFacadeService;
+import com.jumjari.zobiac.application.building.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class ClassroomController {
-    private final BuildingFacadeService buildingService;
+    private final BuildingService buildingService;
     private final ClassroomFacadeService classroomService;
 
     @GetMapping("/classroom/{building}")
@@ -27,9 +27,9 @@ public class ClassroomController {
     ) {
         model.addAllAttributes(Map.of(
             "main", "dashboard",
-            "building_name", buildingService.getKorFull(building),
+            "building_name", buildingService.getKorFullByEngShort(building),
             "url", building,
-            "signs", classroomService.getSigns(buildingService.getKorFull(building))
+            "signs", classroomService.getSigns(buildingService.getKorShortByEngShort(building))
         ));
         return "client";
     }

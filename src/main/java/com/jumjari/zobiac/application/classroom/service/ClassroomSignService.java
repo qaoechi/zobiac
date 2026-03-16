@@ -10,16 +10,16 @@ import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.Classroom;
 import com.jumjari.zobiac.application.classroom.dto.Room;
-import com.jumjari.zobiac.application.classroom.dto.Sign;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomSign;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-class SignService {
+class ClassroomSignService {
     private final ClassroomSearchService service;
 
-    List<Sign> getSigns(String building) {
-        List<Sign> result = new ArrayList<>();
+    List<ClassroomSign> getSigns(String building) {
+        List<ClassroomSign> result = new ArrayList<>();
 
         List<Classroom> classrooms = service.getClassroomsByBuildingTrue(building);
         for (Classroom classroom : classrooms) {
@@ -56,7 +56,7 @@ class SignService {
             }
             memo = classroom.getMemo();
 
-            Sign sign = new Sign(classroom.getId(), floor, placard, front, back, other, memo);
+            ClassroomSign sign = new ClassroomSign(classroom.getId(), floor, placard, front, back, other, memo);
             result.add(sign);
         }
         return result;

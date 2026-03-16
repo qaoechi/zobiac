@@ -25,21 +25,16 @@ public class BuildingService {
             .map(mapper::toMarker)
             .toList();
     }
-    public String getByKorFull(String korFull) {
-        return repository.findByKorFull(korFull)
-            .orElseThrow(() -> new IllegalArgumentException(korFull + "does not exist"))
+    public String getKorFullByEngShort(String engShort) {
+        return repository.findByKorFull(engShort)
+            .orElseThrow(() -> new IllegalArgumentException(engShort + "does not exist"))
             .getKorFull();
     }
-    // public String getKorShort(String engShort) {
-    //     return repository.findByEngShort(engShort)
-    //         .orElseThrow(() -> new IllegalArgumentException(engShort + "does not exist"))
-    //         .getKorShort();
-    // }
-    // public String getEngShort(String korFull) {
-    //     return repository.findByKorFull(korFull)
-    //         .orElseThrow(() -> new IllegalArgumentException(korFull + "does not exist"))
-    //         .getEngShort();
-    // }
+    public String getKorShortByEngShort(String engShort) {
+        return repository.findByEngShort(engShort)
+            .orElseThrow(() -> new IllegalArgumentException(engShort + "does not exist"))
+            .getKorShort();
+    }
     public Optional<String> getByInput(String name) {
         return repository.findByKorFullContaining(name)
             .stream()
