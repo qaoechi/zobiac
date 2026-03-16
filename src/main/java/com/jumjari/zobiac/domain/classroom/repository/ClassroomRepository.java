@@ -1,10 +1,12 @@
-package com.jumjari.zobiac.domain.classroom;
+package com.jumjari.zobiac.domain.classroom.repository;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.jumjari.zobiac.domain.classroom.entity.ClassroomEntity;
 
 public interface ClassroomRepository extends JpaRepository<ClassroomEntity, Long> {
     Optional<ClassroomEntity> findById(Long id);

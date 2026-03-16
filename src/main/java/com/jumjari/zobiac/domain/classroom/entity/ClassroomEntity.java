@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.domain.classroom;
+package com.jumjari.zobiac.domain.classroom.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,8 +16,6 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import com.jumjari.zobiac.domain.room.RoomEntity;
 
 @Entity
 @NoArgsConstructor

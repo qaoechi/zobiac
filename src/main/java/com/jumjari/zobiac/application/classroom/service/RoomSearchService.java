@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.Room;
 import com.jumjari.zobiac.application.classroom.mapper.RoomMapper;
-import com.jumjari.zobiac.domain.room.RoomRepository;
+import com.jumjari.zobiac.domain.classroom.repository.RoomRepository;
 
 @Service
 @RequiredArgsConstructor
