@@ -1,5 +1,8 @@
 package com.jumjari.zobiac.domain.classroom.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.Getter;
@@ -26,9 +30,6 @@ public class ClassroomEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "is_active", nullable = false)
-    private boolean isActive = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
@@ -62,4 +63,7 @@ public class ClassroomEntity {
 
     @Column(name = "memo", columnDefinition = "TEXT")
     private String memo;
+
+    @OneToMany(mappedBy = "parent")
+    private List<ClassroomEntity> children = new ArrayList<>();
 }

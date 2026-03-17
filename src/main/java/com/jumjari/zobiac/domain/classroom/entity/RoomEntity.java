@@ -26,14 +26,14 @@ import com.jumjari.zobiac.domain.building.BuildingEntity;
     name = "rooms",
     uniqueConstraints = @UniqueConstraint(
         name = "unique_room",
-        columnNames = {"building_id", "room_number", "room_floor"}
+        columnNames = {"room_number", "room_floor"}
     )
 )
 public class RoomEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long roomId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
