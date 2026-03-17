@@ -46,6 +46,6 @@ public class BuildingService {
         return repository.findByKorFullContaining(name)
             .stream()
             .findFirst()
-            .map(req -> "/" + req.getKorFull());
+            .map(req -> req.getEngShort());
     }
 }
