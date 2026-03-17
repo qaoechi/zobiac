@@ -33,4 +33,17 @@ public class ClassroomController {
         ));
         return "client";
     }
+
+    @GetMapping("/classroom/{building}/editor")
+    public String editor(
+        @PathVariable("building") String building,
+        Model model
+    ) {
+        model.addAllAttributes(Map.of(
+            "main", "editor",
+            "building_name", buildingService.getKorFullByEngShort(building),
+            "url", building
+        ));
+        return "client";
+    }
 }
