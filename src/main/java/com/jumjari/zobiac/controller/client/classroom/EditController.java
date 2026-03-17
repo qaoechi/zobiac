@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jumjari.zobiac.application.building.service.BuildingService;
-import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
-
 import lombok.RequiredArgsConstructor;
+
+import com.jumjari.zobiac.application.building.service.BuildingService;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomRequest;
+import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,7 +30,8 @@ public class EditController {
             "main", "editor",
             "url", building,
             "building_name", buildingService.getKorFullByEngShort(building),
-            "classrooms", classroomService.getClassroomsByBuildingTrue(buildingService.getKorFullByEngShort(building))
+            "classrooms", classroomService.getClassroomsByBuildingTrue(buildingService.getKorFullByEngShort(building)),
+            "request", new ClassroomRequest()
         ));
         return "client";
     }
