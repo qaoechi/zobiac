@@ -1,4 +1,4 @@
-<div th:fragment="editor-facade(classrooms, buildings)" id="editor-facade">
+<div th:fragment="editor-facade(url, classrooms, buildings, request)" id="editor-facade">
     <div th:replace="~{fragments/classroom/editor/dashboard::editor-dashboard(${classrooms})}"></div>
-    <div th:replace="~{fragments/classroom/editor/edit-form::editor-form(${buildings}, ${classrooms})}"></div>
+    <div th:replace="~{fragments/classroom/editor/edit-form::editor-form(${url}, ${buildings}, ${classrooms}, ${request})}"></div>
 </div>

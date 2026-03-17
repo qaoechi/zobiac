@@ -1,31 +1,30 @@
-<div th:fragment="editor-form(buildings, classrooms)" id="editor-form">
+<div th:fragment="editor-form(url, buildings, classrooms, request)" id="editor-form">
     <form th:action="@{/client/edit/classrooms}" method="post" th:object="${request}" id="editorForm">
 
         <label for="building">건물: </label>
-        <select name="building" id="building">
+        <select th:field="*{building}">
             <option value="">건물을 선택하세요</option>
             <option th:each="o : ${buildings}"
-            th:value="${o.korShort}"
+            th:value="${o.id}"
             th:text="${o.korFull}"
-            th:selected="${o.korFull == building}">
+            th:selected="${o.korFull == url}">
             </option>
         </select>
 
-
-        <label for="classroomId">강의실: </label>
+        <!-- <label for="classroomId">강의실: </label>
         <select th:field="*{id}">
             <option value="">강의실을 선택하세요</option>
             <option th:each="c : ${classroomList}"
             th:value="${c.id}"
             th:text="${c.room.number} + ${c.name}">
             </option>
-        </select>
+        </select> -->
         
         <label for="number">호수: </label>
         <input type="text" th:field="*{number}">
 
         <label for="floor">지하: </label>
-        <input type="checkbox" th:field="*{floor}" value="true" id="floor">
+        <input type="checkbox" th:field="*{floor}" value="true">
 
         <label for="name">이름: </label>
         <input type="text" th:field="*{name}">
@@ -53,7 +52,7 @@
 
         <label for="parentId">부모: </label>
         <!-- <input type="hidden" name="parentId" id="parentId"> -->
-        <select name="parentId" id="parentId">
+        <select th:field="*{parentId}">
             <option value="">강의실을 선택하세요</option>
             <option th:each="c : ${classroomList}"
             th:value="${c.id}"

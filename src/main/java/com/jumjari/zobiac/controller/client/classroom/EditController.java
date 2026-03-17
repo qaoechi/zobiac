@@ -30,6 +30,7 @@ public class EditController {
             "main", "editor",
             "url", building,
             "building_name", buildingService.getKorFullByEngShort(building),
+            "buildings", buildingService.getAll(),
             "classrooms", classroomService.getClassroomsByBuildingTrue(buildingService.getKorFullByEngShort(building)),
             "request", new ClassroomRequest()
         ));

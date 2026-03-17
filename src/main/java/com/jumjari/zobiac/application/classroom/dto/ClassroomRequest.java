@@ -11,12 +11,12 @@ import lombok.Setter;
 @Setter
 public class ClassroomRequest {
     private Long id;
-    private String building;
+    private Long building;
     private String number;
     private Boolean floor;
     private String name;
     private String direction;
-    private Integer type;
+    private Integer doorType;
     private Byte count;
     private Long parentId;
     private String memo;
