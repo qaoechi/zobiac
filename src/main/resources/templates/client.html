@@ -26,7 +26,7 @@
                 </th:block>
                 <th:block th:case="editor">
                     <div th:replace="~{fragments/classroom/tools::tools(${url}, ${building_name})}"></div>
-                    <div th:replace="~{fragments/classroom/editor/editor-facade::editor-facade}"></div>
+                    <div th:replace="~{fragments/classroom/editor/editor-facade::editor-facade(${classrooms})}"></div>
                 </th:block>
                 <th:block th:case="profile">
                     <div th:replace="~{fragments/profile/profile::setting-profile}"></div>

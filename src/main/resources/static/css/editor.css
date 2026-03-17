@@ -1,4 +1,5 @@
 @import url("fragments/header/header.css");
+@import url("fragments/classroom/editor/editor.css");
 @import url("fragments/classroom/tools.css");
 
 main {

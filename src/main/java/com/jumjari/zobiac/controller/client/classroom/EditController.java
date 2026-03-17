@@ -8,28 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lombok.RequiredArgsConstructor;
-
 import com.jumjari.zobiac.application.building.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/client")
-public class ClassroomController {
+@RequestMapping("/client/edit")
+public class EditController {
     private final BuildingService buildingService;
     private final ClassroomFacadeService classroomService;
 
-    @GetMapping("/classroom/{building}")
-    public String classroomDashboard(
+    @GetMapping("/{building}")
+    public String editPage(
         @PathVariable("building") String building,
         Model model
     ) {
         model.addAllAttributes(Map.of(
-            "main", "dashboard",
-            "building_name", buildingService.getKorFullByEngShort(building),
+            "main", "editor",
             "url", building,
-            "signs", classroomService.getSigns(buildingService.getKorShortByEngShort(building))
+            "building_name", buildingService.getKorFullByEngShort(building),
+            "classrooms", classroomService.getClassroomsByBuildingTrue(buildingService.getKorFullByEngShort(building))
         ));
         return "client";
     }

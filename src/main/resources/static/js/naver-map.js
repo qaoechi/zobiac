@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     buildings = await loadBuildings();
     buildings.forEach(building => {
         const constentString = `<div class="marker-div">
-        <a href="/client/classroom/${building.engShort}">${building.korFull}</a>
+        <a href="/client/edit/${building.engShort}">${building.korFull}</a>
 </div>`;
 
         buildingDiv.set(building.engShort, constentString);

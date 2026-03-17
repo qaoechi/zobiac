@@ -1,3 +1,3 @@
-<div th:fragment="editor-facade" id="editor-facade">
-    editor
+<div th:fragment="editor-facade(classrooms)" id="editor-facade">
+    <div th:replace="~{fragments/classroom/editor/dashboard::editor-dashboard(${classrooms})}"></div>
 </div>
