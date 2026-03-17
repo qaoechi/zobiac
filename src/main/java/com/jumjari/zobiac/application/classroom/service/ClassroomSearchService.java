@@ -24,7 +24,7 @@ class ClassroomSearchService {
             .map(mapper::toDto);
     }
     List<Classroom> getClassroomsByBuildingTrue(String kroFull) {
-        return repository.findAllByRoom_Building_korFullAndIsActiveTrue(kroFull)
+        return repository.findAllByRoom_Building_korFull(kroFull)
             .stream()
             .map(mapper::toDto)
             .toList();
