@@ -6,8 +6,7 @@
             <option value="">건물을 선택하세요</option>
             <option th:each="o : ${buildings}"
             th:value="${o.id}"
-            th:text="${o.korFull}"
-            th:selected="${o.korFull == url}">
+            th:text="${o.korFull}">
             </option>
         </select>
 
@@ -23,8 +22,8 @@
         <label for="number">호수: </label>
         <input type="text" th:field="*{number}">
 
-        <label for="floor">지하: </label>
-        <input type="checkbox" th:field="*{floor}" value="true">
+        <label for="basement">지하: </label>
+        <input type="checkbox" name="basement" id="basement">
 
         <label for="name">이름: </label>
         <input type="text" th:field="*{name}">
@@ -33,17 +32,17 @@
         <label for="direction">방향: </label>
         <select th:field="*{direction}">
             <option value="">선택</option>
-            <option value="left">좌</option>
-            <option value="right">우</option>
-            <option value="no sign">표지판이 없음</option>
+            <option value="LEFT">좌</option>
+            <option value="RIGHT">우</option>
+            <option value="NO_SIGN">표지판이 없음</option>
         </select>
 
-        <label for="type">문 종류: </label>
-        <select name="type" id="type">
+        <label for="doorType">문 종류: </label>
+        <select th:field="*{doorType}">
             <option value="">선택</option>
-            <option value="5" selected>모름</option>
-            <option value="1">외여닫이문</option>
-            <option value="2">쌍여닫이문</option>
+            <option value="IDK" selected>모름</option>
+            <option value="SINGLE">외여닫이문</option>
+            <option value="DOUBLE">쌍여닫이문</option>
         </select>
 
         <label for="count">문 수:</label>
@@ -66,11 +65,11 @@
 
 
         <button type="submit"
-            th:formaction="@{'/jumjari/client/classroom/' + ${engShort} + '/update'}">
+            th:formaction="@{/client/edit/classroom/save}">
             제출하기
         </button>
         <button type="submit"
-            th:formaction="@{'/jumjari/client/classroom/' + ${engShort} + '/delete'}">
+            th:formaction="@{/client/classroom/delete}">
             삭제하기
         </button>
 

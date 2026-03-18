@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.building.dto.BuildingMarkerResponse;
 import com.jumjari.zobiac.application.building.dto.BuildingSelectResponse;
 import com.jumjari.zobiac.application.building.mapper.BuildingMapper;
+import com.jumjari.zobiac.domain.building.BuildingEntity;
 import com.jumjari.zobiac.domain.building.BuildingRepository;
 
 @Service
@@ -19,6 +20,15 @@ import com.jumjari.zobiac.domain.building.BuildingRepository;
 public class BuildingService {
     private final BuildingRepository repository;
     private final BuildingMapper mapper;
+
+    public BuildingEntity getById(Long id) {
+        return repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException(id + "does not exist"));
+    }
+    public BuildingEntity getByEng(String eng) {
+        return repository.findByEngShort(eng)
+            .orElseThrow(() -> new IllegalArgumentException(eng + "does not exist"));
+    }
 
     public List<BuildingSelectResponse> getAll() {
         return repository.findAll()

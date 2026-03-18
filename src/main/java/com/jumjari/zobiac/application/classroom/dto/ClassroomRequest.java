@@ -13,10 +13,10 @@ public class ClassroomRequest {
     private Long id;
     private Long building;
     private String number;
-    private Boolean floor;
+    private Byte floor;
     private String name;
     private String direction;
-    private Integer doorType;
+    private String doorType;
     private Byte count;
     private Long parentId;
     private String memo;

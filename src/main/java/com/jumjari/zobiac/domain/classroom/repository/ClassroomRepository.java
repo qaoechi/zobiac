@@ -13,6 +13,6 @@ public interface ClassroomRepository extends JpaRepository<ClassroomEntity, Long
 
     @EntityGraph(attributePaths = {"room", "room.building"})
     List<ClassroomEntity> findAllByRoom_Building_korFull(String korFull);
-
+    long countByRoomId(Long roomId);
     // Optional<ClassroomEntity> findAllByBuildingNameTrue(String buildingName);
 }

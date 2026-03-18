@@ -66,4 +66,34 @@ public class ClassroomEntity {
 
     @OneToMany(mappedBy = "parent")
     private List<ClassroomEntity> children = new ArrayList<>();
+
+    public static ClassroomEntity create(
+        RoomEntity room,
+        String name,
+        String direction,
+        String doorType,
+        Byte count,
+        ClassroomEntity parentId,
+        String memo
+    ) {
+        System.out.println(direction + doorType);
+        ClassroomEntity classroom = new ClassroomEntity();
+        classroom.room = room;
+        classroom.name = name;
+        classroom.direction = Direction.valueOf(direction);
+        classroom.type = DoorType.valueOf(doorType);
+        classroom.count = count;
+        classroom.parent = parentId;
+        classroom.memo = memo;
+        return classroom;
+    }
+
+    public void update(RoomEntity room, String direction, String doortype, Byte count, ClassroomEntity parent, String memo) {
+        this.room = room;
+        this.direction = Direction.valueOf(direction);
+        this.type = DoorType.valueOf(doortype);
+        this.count = count;
+        this.parent = parent;
+        this.memo = memo;
+    }
 }
