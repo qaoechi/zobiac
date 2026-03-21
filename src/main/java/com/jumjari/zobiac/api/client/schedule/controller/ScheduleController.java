@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.controller.client.schedule;
+package com.jumjari.zobiac.api.client.schedule.controller;
 
 import java.util.List;
 import java.util.Map;

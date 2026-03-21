@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.controller.client;
+package com.jumjari.zobiac.api.client.member.controller;
 
 import java.util.Map;
 

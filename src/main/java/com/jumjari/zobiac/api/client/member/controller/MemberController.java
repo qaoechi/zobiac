@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.controller.member;
+package com.jumjari.zobiac.api.client.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

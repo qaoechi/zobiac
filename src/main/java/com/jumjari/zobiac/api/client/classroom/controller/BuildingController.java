@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.controller.client.classroom;
+package com.jumjari.zobiac.api.client.classroom.controller;
 
 import java.util.List;
 import java.util.Map;
