@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,20 +21,21 @@ import com.jumjari.zobiac.domain.building.BuildingEntity;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Table(
     name = "rooms",
     uniqueConstraints = @UniqueConstraint(
         name = "unique_room",
-        columnNames = {"building_id", "room_number", "room_floor"}
+        columnNames = {"room_number", "room_floor"}
     )
 )
 public class RoomEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long roomId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
@@ -47,4 +49,10 @@ public class RoomEntity {
     private String number;
     @Column(name = "room_floor", nullable = false)
     private Byte floor;
+
+    public void update(BuildingEntity building, String number, Byte floor) {
+        this.building = building;
+        this.number = number;
+        this.floor = floor;
+    } 
 }

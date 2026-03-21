@@ -1,0 +1,12 @@
+<div th:fragment="editor-dashboard(classrooms)" id="editor-dashboard">
+    <span>active classroom</span>
+    <div class="room-list">
+        <div th:each="classroom : ${classrooms}"
+            th:text="${classroom.room.number} + ' ' + ${classroom.name}"
+            th:data-id="${classroom.id}"
+            class="room-item"
+            draggable="true">
+            101강의실
+        </div>
+    </div>
+</div>
