@@ -17,8 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.domain.building.BuildingEntity;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

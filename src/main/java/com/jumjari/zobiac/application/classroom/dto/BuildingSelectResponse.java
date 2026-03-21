@@ -5,13 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class Room {
-    private Long roomId;
-    private BuildingDetail building;
-    private String number;
-    private Byte floor;
+public class BuildingSelectResponse {
+    private Long id;
+    private String engShort;
+    private String korFull;
 }

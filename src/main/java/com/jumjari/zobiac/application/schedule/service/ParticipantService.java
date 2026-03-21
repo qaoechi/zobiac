@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.member.service.UserSearchService;
 import com.jumjari.zobiac.application.schedule.dto.ParticipantResponse;
 import com.jumjari.zobiac.application.schedule.mapper.ParticipantMapper;
-import com.jumjari.zobiac.domain.member.User;
+import com.jumjari.zobiac.domain.member.entity.User;
 import com.jumjari.zobiac.domain.schedule.entity.ParticipantEntity;
 import com.jumjari.zobiac.domain.schedule.repository.ParticipantRepository;
 
