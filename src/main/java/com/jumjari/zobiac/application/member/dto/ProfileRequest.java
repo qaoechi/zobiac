@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.application.member;
+package com.jumjari.zobiac.application.member.dto;
 
 public record ProfileRequest(
     String username,

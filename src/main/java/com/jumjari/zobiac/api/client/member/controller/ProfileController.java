@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jumjari.zobiac.application.member.ProfileRequest;
+import com.jumjari.zobiac.application.member.dto.ProfileRequest;
 import com.jumjari.zobiac.application.member.service.UserSearchService;
 import com.jumjari.zobiac.global.security.principal.Member;
 
