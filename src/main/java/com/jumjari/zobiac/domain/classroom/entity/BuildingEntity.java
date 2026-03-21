@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.domain.building;
+package com.jumjari.zobiac.domain.classroom.entity;
 
 import org.hibernate.annotations.Immutable;
 

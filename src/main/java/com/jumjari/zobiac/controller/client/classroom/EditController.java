@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.building.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomRequest;
+import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomService;
 

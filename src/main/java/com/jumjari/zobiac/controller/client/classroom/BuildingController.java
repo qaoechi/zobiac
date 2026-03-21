@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.building.dto.BuildingMarkerResponse;
-import com.jumjari.zobiac.application.building.service.BuildingService;
+import com.jumjari.zobiac.application.classroom.dto.BuildingMarkerResponse;
+import com.jumjari.zobiac.application.classroom.service.BuildingService;
 
 @Controller
 @RequiredArgsConstructor

@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.jumjari.zobiac.application.building.dto.BuildingDetail;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

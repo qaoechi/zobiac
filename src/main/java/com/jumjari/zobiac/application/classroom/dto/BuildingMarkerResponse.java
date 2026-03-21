@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.application.building.dto;
+package com.jumjari.zobiac.application.classroom.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class BuildingDetail {
+public class BuildingMarkerResponse {
     private Long id;
-    private String korFull;
     private boolean campus;
-    private String korShort;
+    private String korFull;
+    private String engShort;
+    private Double latitude;
+    private Double longitude;
 }

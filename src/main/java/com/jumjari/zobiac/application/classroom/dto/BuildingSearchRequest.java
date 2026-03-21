@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.application.building.dto;
+package com.jumjari.zobiac.application.classroom.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

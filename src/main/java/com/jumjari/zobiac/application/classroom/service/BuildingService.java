@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.application.building.service;
+package com.jumjari.zobiac.application.classroom.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.building.dto.BuildingMarkerResponse;
-import com.jumjari.zobiac.application.building.dto.BuildingSelectResponse;
-import com.jumjari.zobiac.application.building.mapper.BuildingMapper;
-import com.jumjari.zobiac.domain.building.BuildingEntity;
-import com.jumjari.zobiac.domain.building.BuildingRepository;
+import com.jumjari.zobiac.application.classroom.dto.BuildingMarkerResponse;
+import com.jumjari.zobiac.application.classroom.dto.BuildingSelectResponse;
+import com.jumjari.zobiac.application.classroom.mapper.BuildingMapper;
+import com.jumjari.zobiac.domain.classroom.entity.BuildingEntity;
+import com.jumjari.zobiac.domain.classroom.repository.BuildingRepository;
 
 @Service
 @RequiredArgsConstructor

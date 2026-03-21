@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.ClassroomRequest;
-import com.jumjari.zobiac.domain.building.BuildingEntity;
+import com.jumjari.zobiac.domain.classroom.entity.BuildingEntity;
 import com.jumjari.zobiac.domain.classroom.entity.RoomEntity;
 import com.jumjari.zobiac.domain.classroom.repository.RoomRepository;
 
