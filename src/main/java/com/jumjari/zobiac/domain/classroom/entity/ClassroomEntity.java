@@ -76,7 +76,6 @@ public class ClassroomEntity {
         ClassroomEntity parentId,
         String memo
     ) {
-        System.out.println(direction + doorType);
         ClassroomEntity classroom = new ClassroomEntity();
         classroom.room = room;
         classroom.name = name;
