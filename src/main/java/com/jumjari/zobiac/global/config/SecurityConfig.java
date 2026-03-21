@@ -5,15 +5,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.jumjari.zobiac.global.security.oauth.OAuth2UserService;
-import com.jumjari.zobiac.global.security.principal.Member;
-
 import lombok.RequiredArgsConstructor;
+
+import com.jumjari.zobiac.global.security.handler.LoginSuccessHandler;
+import com.jumjari.zobiac.global.security.oauth.OAuth2UserService;
 
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final OAuth2UserService oAuth2UserService;
+    private final LoginSuccessHandler loginSuccessHandler;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
@@ -28,14 +30,7 @@ public class SecurityConfig {
             .userInfoEndpoint(info -> info
                 .userService(oAuth2UserService)
             )
-            .successHandler((request, response, authentication) -> {
-                Member member = (Member) authentication.getPrincipal();
-                if (!member.isCompleted()) {
-                    response.sendRedirect("/client/profile");
-                } else {
-                    response.sendRedirect("/home");
-                }
-            })
+            .successHandler(loginSuccessHandler)
         )
         .logout(logout -> logout
             .logoutUrl("/member/logout")
