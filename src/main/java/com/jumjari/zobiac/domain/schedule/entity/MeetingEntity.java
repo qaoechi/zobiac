@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jumjari.zobiac.domain.member.User;
+import com.jumjari.zobiac.domain.member.entity.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

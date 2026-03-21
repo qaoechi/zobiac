@@ -8,9 +8,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import lombok.RequiredArgsConstructor;
+import com.jumjari.zobiac.domain.member.entity.User;
 
-import com.jumjari.zobiac.domain.member.User;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class Member implements OAuth2User {

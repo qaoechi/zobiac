@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.member.Member;
-import com.jumjari.zobiac.domain.member.OauthAccount;
-import com.jumjari.zobiac.domain.member.OauthAccountRepository;
-import com.jumjari.zobiac.domain.member.User;
-import com.jumjari.zobiac.domain.member.UserRepository;
+import com.jumjari.zobiac.domain.member.entity.OauthAccount;
+import com.jumjari.zobiac.domain.member.entity.User;
+import com.jumjari.zobiac.domain.member.repository.OauthAccountRepository;
+import com.jumjari.zobiac.domain.member.repository.UserRepository;
 
 @Service
 @Transactional

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jumjari.zobiac.application.member.ProfileRequest;
-import com.jumjari.zobiac.domain.member.User;
-import com.jumjari.zobiac.domain.member.UserRepository;
+import com.jumjari.zobiac.domain.member.entity.User;
+import com.jumjari.zobiac.domain.member.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

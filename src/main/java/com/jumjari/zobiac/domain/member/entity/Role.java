@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.domain.member;
+package com.jumjari.zobiac.domain.member.entity;
 
 public enum Role {
     ROLE_USER,

@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.domain.member;
+package com.jumjari.zobiac.domain.member.entity;
 
 import java.time.LocalDateTime;
 
