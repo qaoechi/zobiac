@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 
-@Controller
+@Controller("clientClassroom")
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class ClassroomController {

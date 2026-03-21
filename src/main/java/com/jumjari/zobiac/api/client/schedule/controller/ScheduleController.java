@@ -21,7 +21,7 @@ import com.jumjari.zobiac.application.schedule.service.AvailabilityService;
 import com.jumjari.zobiac.application.schedule.service.MeetingService;
 import com.jumjari.zobiac.application.schedule.service.ScheduleService;
 
-@Controller
+@Controller("clientSchedule")
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class ScheduleController {
