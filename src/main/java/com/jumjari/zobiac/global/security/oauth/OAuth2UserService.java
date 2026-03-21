@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.application.member.service;
+package com.jumjari.zobiac.global.security.oauth;
 
 import java.util.Optional;
 
@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.member.Member;
 import com.jumjari.zobiac.domain.member.entity.OauthAccount;
 import com.jumjari.zobiac.domain.member.entity.User;
 import com.jumjari.zobiac.domain.member.repository.OauthAccountRepository;
 import com.jumjari.zobiac.domain.member.repository.UserRepository;
+import com.jumjari.zobiac.global.security.principal.Member;
 
 @Service
 @Transactional

@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.application.member;
+package com.jumjari.zobiac.global.security.principal;
 
 import java.util.Collection;
 import java.util.List;

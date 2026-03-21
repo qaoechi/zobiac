@@ -1,4 +1,4 @@
-package com.jumjari.zobiac.infrastructure.config;
+package com.jumjari.zobiac.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

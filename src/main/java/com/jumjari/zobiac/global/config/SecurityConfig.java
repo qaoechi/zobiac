@@ -1,12 +1,12 @@
-package com.jumjari.zobiac.infrastructure.security;
+package com.jumjari.zobiac.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.jumjari.zobiac.application.member.Member;
-import com.jumjari.zobiac.application.member.service.OAuth2UserService;
+import com.jumjari.zobiac.global.security.oauth.OAuth2UserService;
+import com.jumjari.zobiac.global.security.principal.Member;
 
 import lombok.RequiredArgsConstructor;
 
