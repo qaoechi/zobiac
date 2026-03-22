@@ -1,9 +1,0 @@
-<div th:fragment="dashboard(signs)" id="classroom-dashboard">
-    <div id="dashboard-board">
-        <div th:replace="~{fragments/classroom/dashboard/rest::rest}"></div>
-        <div th:replace="~{fragments/classroom/dashboard/waiting::waiting}"></div>
-        <div th:replace="~{fragments/classroom/dashboard/warning::warning}"></div>
-    </div>
-    <div th:replace="~{fragments/classroom/dashboard/details::details}"></div>
-    <div th:replace="~{fragments/classroom/dashboard/overview::overview(${signs})}"></div>
-</div>
