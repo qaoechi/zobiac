@@ -3,9 +3,13 @@
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/main}">
+    <head>
+        <meta name="_csrf" th:content="${_csrf.token}">
+        <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    </head>
     <body>
         <div layout:fragment="content">
-        <table id="time-table">
+            <table id="time-table">
                 <thead>
                     <tr>
                         <th>schedule</th>
