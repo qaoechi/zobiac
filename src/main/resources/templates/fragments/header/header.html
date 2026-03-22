@@ -1,0 +1,24 @@
+<div th:fragment="header">
+    <div th:replace="~{fragments/header/navigation :: navigation}"></div>
+    <div id="mypage">
+        <span>my page</span>
+        <ul>
+            <li><a th:href="@{/client/profile}">프로필</a></li>
+            <th:block sec:authorize="isAnonymous()">
+                <li>
+                    <a th:href="@{/member/login}">로그인 폼</a>
+                </li>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <li>
+                    <form th:action="@{/member/logout}" method="post">
+                        <button type="submit">로그아웃</button>
+                    </form>
+                </li>
+                <li>
+                    <button type="submit" onclick="refreshToken()">연장</button>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</div>
