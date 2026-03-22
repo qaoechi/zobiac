@@ -11,7 +11,7 @@ function submitSchedule() {
         });
     });
 
-    fetch(`/client/schedule/${meetingId}/update`, {
+    fetch(`/client/schedule/${scheduleData.meetingId}/update`, {
         method: "POST",
         headers: {
             "Content-Type" : "application/json",
