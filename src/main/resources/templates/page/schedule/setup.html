@@ -4,8 +4,7 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/main}">
     <head>
-        <meta name="_csrf" th:content="${_csrf.token}">
-        <meta name="_csrf_header" th:content="${_csrf.headerName}">
+        <th:block th:replace="~{fragments/csrf-token :: csrf-token}"></th:block>
     </head>
     <body>
         <div layout:fragment="content">
