@@ -10,7 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MeetingRequest {
+    private Long id;
     private String title;
     private String description;
-    private boolean open;
+    private boolean open = true;
 }
