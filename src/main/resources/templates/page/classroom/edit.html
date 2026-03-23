@@ -5,23 +5,15 @@
         layout:decorate="~{layout/main}">
     <body>
         <div layout:fragment="content">
-            <div id="editor-dashboard">
-                <div id="classroom-tools">
-                <div th:text="${building_name}">현재 건물</div>
-                <a th:href="@{/client/building}" id="buildings-link">건물선택</a>
-                <a th:href="@{'/client/classroom/' + ${url}}" id="dashboard-link">대시보드</a>
-                <a th:href="@{'/client/edit/' + ${url}}" id="modify-link">수정</a>
-                <a th:href="@{'/client/classroom/' + ${url} + '/history'}" id="record-link">기록</a>
-            </div>
-                <span>active classroom</span>
-                <div class="room-list">
-                    <div th:each="classroom : ${classrooms}"
-                        th:text="${classroom.room.number} + ' ' + ${classroom.name}"
-                        th:data-id="${classroom.id}"
-                        class="room-item"
-                        draggable="true">
-                        101강의실
-                    </div>
+            <th:object th:replace="~{fragments/classroom/tools :: tools}"></th:object>
+            <span>active classroom</span>
+            <div class="room-list">
+                <div th:each="classroom : ${classrooms}"
+                    th:text="${classroom.room.number} + ' ' + ${classroom.name}"
+                    th:data-id="${classroom.id}"
+                    class="room-item"
+                    draggable="true">
+                    101강의실
                 </div>
             </div>
             <div id="editor-form">
