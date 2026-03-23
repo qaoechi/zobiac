@@ -38,9 +38,6 @@ public class ProfileController {
         Authentication auth
     ) {
         Member member = (Member)auth.getPrincipal();
-        System.out.println("username = " + request.getUsername());
-        System.out.println("number = " + request.getNumber());
-        System.out.println("nickname = " + request.getNickname());
         userService.updateProfile(member.getId(), request);
         return "redirect:/home";
     }
