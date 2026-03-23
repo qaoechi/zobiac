@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main}">
+    <head>
+        <th:block layout:fragment="style">
+            <!-- <link rel="stylesheet" th:href="@{/css/page/schedule/dashboard.css}"> -->
+        </th:block>
+    </head>
+    <body>
+        <th:block layout:fragment="content">
+            manager page
+            <th:block th:each="meeting : ${meetings}">
+                <div th:text="${meeting.id}"></div>
+                <a th:href="@{'/client/schedule/' + ${meeting.id}}" th:text="${meeting.title}"></a>
+            </th:block>
+            <form th:action="@{/manager/schedule/update}" th:object="${request}" method="post">
+                <label for="title">이름</label>
+                <input type="text" th:field="*{title}">
+                <label for="description">설명</label>
+                <input type="text" th:field="*{description}">
+                <label for="open">지하: </label>
+                <input type="checkbox" th:field="*{open}">
+                <button type="submit">제출</button>
+            </form>
+            </button>
+        </th:block>
+    </body>
+</html>

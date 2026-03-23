@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
+import com.jumjari.zobiac.api.manager.schedule.dto.MeetingRequest;
 import com.jumjari.zobiac.application.schedule.dto.Meeting;
-import com.jumjari.zobiac.application.schedule.dto.MeetingRequest;
 import com.jumjari.zobiac.application.schedule.dto.MeetingResponse;
 import com.jumjari.zobiac.application.schedule.mapper.MeetingMapper;
 import com.jumjari.zobiac.domain.schedule.entity.MeetingEntity;
