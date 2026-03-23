@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main}">
+    <body>
+        <div layout:fragment="content">
+            <div id="classroom-tools">
+                <div th:text="${building_name}">현재 건물</div>
+                <a th:href="@{/client/building}" id="buildings-link">건물선택</a>
+                <a th:href="@{'/client/classroom/' + ${url}}" id="dashboard-link">대시보드</a>
+                <a th:href="@{'/client/edit/' + ${url}}" id="modify-link">수정</a>
+                <a th:href="@{'/client/classroom/' + ${url} + '/history'}" id="record-link">기록</a>
+            </div>
+            <div id="dashboard-rest">
+                <div class="dashboard-block-tool">
+                    <span>현재</span>
+                    <a href="">자세히보기</a>
+                </div>
+                <div>
+                    <span>활성화 된 강의실 수: </span>
+                    <span>12</span>
+                    <span style="border: 1px solid black;">+</span>
+                </div>
+            </div>
+            <div id="dashboard-waiting">
+                <div class="dashboard-block-tool">
+                    <span>수정됨</span>
+                    <a href="">자세히보기</a>
+                </div>
+                <div>
+                    <span>수정 중인 강의실 수: </span>
+                    <span>124</span>
+                    <span style="border: 1px solid black;">+</span>
+                </div>
+            </div>
+            <div id="dashboard-warning">
+                <div class="dashboard-block-tool">
+                    <span>오래됨</span>
+                    <a href="">자세히보기</a>
+                </div>
+                <div>
+                    <span>오래된 강의실 수: </span>
+                    <span>1</span>
+                    <span style="border: 1px solid black;">+</span>
+                </div>
+            </div>
+            <div id="dashboard-details">
+                <div>
+                    details
+                </div>
+            </div>
+            <div id="dashboard-overview">
+                <table class="status__table">
+                    <tr>
+                        <th>호수</th>
+                        <th>표지판</th>
+                        <th>앞문</th>
+                        <th>뒷문</th>
+                    </tr>
+                    <tr th:each="sign : ${signs}">
+                        <td th:text="${sign.number}">B101-1</td>
+                        <td th:text="${sign.placard}">←국제210 컴퓨터실습실</td>
+                        <td th:text="${sign.front}">국제210 컴퓨터실습실</td>
+                        <td th:text="${sign.back}">국제210 컴퓨터실습실 뒤</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
