@@ -1,0 +1,62 @@
+header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: var(--header-height);
+}
+
+nav {
+    width: 90%;
+    height: auto;
+}
+nav > ul {
+    display: flex;
+    height: 100%;
+    /* gap: 100px; */
+}
+nav > ul > li {
+    border: 1px black solid;
+    position: relative;
+}
+nav > ul > li:hover {
+    background-color: rgb(93, 90, 191);
+}
+nav > ul > li:focus-within {
+    background-color: rgb(93, 90, 191);
+}
+nav > ul > li > a {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: 'NanumSquare';
+    font-weight: 800;
+    font-size: larger;
+}
+nav li > ul {
+    display: none;
+    padding: 0;
+}
+nav > ul > li:hover ul {
+    display: block;
+}
+nav > ul > li:focus-within ul {
+    display: block;
+}
+
+#mypage {
+    width: 10%;
+    border: 1px black solid;
+}
+#mypage > a {
+    display: none;
+}
+
+#mypage > ul {
+    display: none;
+    padding: 0;
+}
+
+#mypage:hover > ul {
+    display: block;
+}
