@@ -21,9 +21,11 @@
             </div>
             <div th:fragment="map" id="naver-map">
                 <div id="map" style="height: 500px; width: 100%;"></div>
-                <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=oro4oz4a78"></script>
-                <script th:src="@{/js/naver-map.js}"></script>
             </div>
         </div>
+        <th:block layout:fragment="javascript">
+            <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=oro4oz4a78"></script>
+            <script th:src="@{/js/naver-map.js}"></script>
+        </th:block>
     </body>
 </html>
