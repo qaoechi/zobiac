@@ -4,7 +4,7 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/main}">
     <body>
-        <div layout:fragment="content">
+        <th:block layout:fragment="content">
             <div id="building-form">
                 <form th:action="@{/client/move-building}" method="post">
                     건물(최소 하나 입력): 
@@ -22,7 +22,7 @@
             <div th:fragment="map" id="naver-map">
                 <div id="map" style="height: 500px; width: 100%;"></div>
             </div>
-        </div>
+        </th:block>
         <th:block layout:fragment="javascript">
             <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=oro4oz4a78"></script>
             <script th:src="@{/js/naver-map.js}"></script>

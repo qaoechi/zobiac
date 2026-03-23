@@ -4,11 +4,11 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/main}">
     <body>
-        <div layout:fragment="content">
-            <th:object th:replace="~{fragments/classroom/tools :: tools}"></th:object>
-            <th:object th:replace="~{fragments/classroom/status-board :: status-board}"></th:object>
-            <th:object th:replace="~{fragments/classroom/status-board :: status-board}"></th:object>
-            <th:object th:replace="~{fragments/classroom/status-board :: status-board}"></th:object>
+        <th:block layout:fragment="content">
+            <th:block th:replace="~{fragments/classroom/tools :: tools}"></th:block>
+            <th:block th:replace="~{fragments/classroom/status-board :: status-board}"></th:block>
+            <th:block th:replace="~{fragments/classroom/status-board :: status-board}"></th:block>
+            <th:block th:replace="~{fragments/classroom/status-board :: status-board}"></th:block>
             <div id="dashboard-details">
                 <div>
                     details
@@ -30,6 +30,6 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </th:block>
     </body>
 </html>
