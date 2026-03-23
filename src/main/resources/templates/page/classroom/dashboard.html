@@ -6,39 +6,9 @@
     <body>
         <div layout:fragment="content">
             <th:object th:replace="~{fragments/classroom/tools :: tools}"></th:object>
-            <div id="dashboard-rest">
-                <div class="dashboard-block-tool">
-                    <span>현재</span>
-                    <a href="">자세히보기</a>
-                </div>
-                <div>
-                    <span>활성화 된 강의실 수: </span>
-                    <span>12</span>
-                    <span style="border: 1px solid black;">+</span>
-                </div>
-            </div>
-            <div id="dashboard-waiting">
-                <div class="dashboard-block-tool">
-                    <span>수정됨</span>
-                    <a href="">자세히보기</a>
-                </div>
-                <div>
-                    <span>수정 중인 강의실 수: </span>
-                    <span>124</span>
-                    <span style="border: 1px solid black;">+</span>
-                </div>
-            </div>
-            <div id="dashboard-warning">
-                <div class="dashboard-block-tool">
-                    <span>오래됨</span>
-                    <a href="">자세히보기</a>
-                </div>
-                <div>
-                    <span>오래된 강의실 수: </span>
-                    <span>1</span>
-                    <span style="border: 1px solid black;">+</span>
-                </div>
-            </div>
+            <th:object th:replace="~{fragments/classroom/status-board :: status-board}"></th:object>
+            <th:object th:replace="~{fragments/classroom/status-board :: status-board}"></th:object>
+            <th:object th:replace="~{fragments/classroom/status-board :: status-board}"></th:object>
             <div id="dashboard-details">
                 <div>
                     details
