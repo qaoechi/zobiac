@@ -28,8 +28,9 @@ public class ScheduleController {
 
     @GetMapping("/schedule")
     public String managerPage(Model model) {
-        model.addAllAttributes(Map.of(
-            "request", new MeetingRequest()
+            model.addAllAttributes(Map.of(
+            "request", new MeetingRequest(),
+            "meetings", meetingService.getAll()
         ));
         return "manager/schedule/manage";
     }

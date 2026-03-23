@@ -11,7 +11,6 @@
     <body>
         <th:block layout:fragment="content">
             <th:block th:each="meeting : ${meetings}">
-                <div th:text="${meeting.id}"></div>
                 <a th:href="@{'/client/schedule/' + ${meeting.id}}" th:text="${meeting.title}"></a>
             </th:block>
             <button sec:authorize="hasRole('MANAGER')"

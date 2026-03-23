@@ -12,10 +12,18 @@
         <th:block layout:fragment="content">
             manager page
             <th:block th:each="meeting : ${meetings}">
-                <div th:text="${meeting.id}"></div>
-                <a th:href="@{'/client/schedule/' + ${meeting.id}}" th:text="${meeting.title}"></a>
+                <div th:text="${meeting.title}"
+                    th:onclick="|toggleForm(${meeting.id})|"></div>
             </th:block>
             <form th:action="@{/manager/schedule/update}" th:object="${request}" method="post">
+                <label for="id">미팅</label>
+                <select th:field="*{id}" onchange="fillForm(this.value)">
+                    <option value="">미팅을 선택하세요</option>
+                        <option th:each="o : ${meetings}"
+                            th:value="${o.id}"
+                            th:text="${o.title}">
+                        </option>
+                </select>
                 <label for="title">이름</label>
                 <input type="text" th:field="*{title}">
                 <label for="description">설명</label>
@@ -25,6 +33,14 @@
                 <button type="submit">제출</button>
             </form>
             </button>
+        </th:block>
+        <th:block layout:fragment="javascript">
+            <script type="application/json" id="schedule-manager" th:inline="javascript">
+                {
+                    "meetings": [[${meetings}]]
+                }
+            </script>
+            <script th:src="@{/js/schedule-manager.js}" defer></script>
         </th:block>
     </body>
 </html>
