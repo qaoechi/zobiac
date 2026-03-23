@@ -31,19 +31,18 @@ public class EditController {
         @PathVariable("building") String building,
         Model model
     ) {
-        ClassroomRequest classroom = new ClassroomRequest();
-        classroom.setDoorType("IDK");
-        classroom.setBuilding(buildingService.getByEng(building).getId());
+        // ClassroomRequest classroom = new ClassroomRequest();
+        // classroom.setDoorType("IDK");
+        // classroom.setBuilding(buildingService.getByEng(building).getId());
         
         model.addAllAttributes(Map.of(
-            "main", "editor",
             "url", building,
             "building_name", buildingService.getKorFullByEngShort(building),
             "buildings", buildingService.getAll(),
             "classrooms", classroomService.getClassroomsByBuildingTrue(buildingService.getKorFullByEngShort(building)),
-            "request", classroom
+            "request", ClassroomRequest.formObject(buildingService.getByEng(building).getId())
         ));
-        return "client";
+        return "page/classroom/edit";
     }
 
     @PostMapping("/classroom/save")

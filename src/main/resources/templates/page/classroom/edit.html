@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main}">
+    <body>
+        <div layout:fragment="content">
+            <div id="editor-dashboard">
+                <div id="classroom-tools">
+                <div th:text="${building_name}">현재 건물</div>
+                <a th:href="@{/client/building}" id="buildings-link">건물선택</a>
+                <a th:href="@{'/client/classroom/' + ${url}}" id="dashboard-link">대시보드</a>
+                <a th:href="@{'/client/edit/' + ${url}}" id="modify-link">수정</a>
+                <a th:href="@{'/client/classroom/' + ${url} + '/history'}" id="record-link">기록</a>
+            </div>
+                <span>active classroom</span>
+                <div class="room-list">
+                    <div th:each="classroom : ${classrooms}"
+                        th:text="${classroom.room.number} + ' ' + ${classroom.name}"
+                        th:data-id="${classroom.id}"
+                        class="room-item"
+                        draggable="true">
+                        101강의실
+                    </div>
+                </div>
+            </div>
+            <div id="editor-form">
+                <form th:action="@{/client/edit}" method="post" th:object="${request}" id="editorForm">
+
+                    <label for="building">건물: </label>
+                    <select th:field="*{building}">
+                        <option value="">건물을 선택하세요</option>
+                        <option th:each="o : ${buildings}"
+                            th:value="${o.id}"
+                            th:text="${o.korFull}">
+                        </option>
+                    </select>
+
+                    <!-- <label for="classroomId">강의실: </label>
+                    <select th:field="*{id}">
+                        <option value="">강의실을 선택하세요</option>
+                        <option th:each="c : ${classroomList}"
+                            th:value="${c.id}"
+                            th:text="${c.room.number} + ${c.name}">
+                        </option>
+                    </select> -->
+                    
+                    <label for="number">호수: </label>
+                    <input type="text" th:field="*{number}">
+
+                    <label for="basement">지하: </label>
+                    <input type="checkbox" name="basement" id="basement">
+
+                    <label for="name">이름: </label>
+                    <input type="text" th:field="*{name}">
+                    <br>
+
+                    <label for="direction">방향: </label>
+                    <select th:field="*{direction}">
+                        <option value="">선택</option>
+                        <option value="LEFT">좌</option>
+                        <option value="RIGHT">우</option>
+                        <option value="NO_SIGN">표지판이 없음</option>
+                    </select>
+
+                    <label for="doorType">문 종류: </label>
+                    <select th:field="*{doorType}">
+                        <option value="">선택</option>
+                        <option value="IDK" selected>모름</option>
+                        <option value="SINGLE">외여닫이문</option>
+                        <option value="DOUBLE">쌍여닫이문</option>
+                    </select>
+
+                    <label for="count">문 수:</label>
+                    <input type="number" th:field="*{count}">
+                    <br>
+
+                    <label for="parentId">부모: </label>
+                    <!-- <input type="hidden" name="parentId" id="parentId"> -->
+                    <select th:field="*{parentId}">
+                        <option value="">강의실을 선택하세요</option>
+                        <option th:each="c : ${classroomList}"
+                            th:value="${c.id}"
+                            th:text="${c.room.number} + ${c.name}">
+                        </option>
+                    </select>
+                    <div id="dropZone">부모 강의실</div>
+
+                    <label for="memo">메모: </label>
+                    <input type="text" th:field="*{memo}">
+
+
+                    <button type="submit"
+                        th:formaction="@{/client/edit/classroom/save}">
+                        제출하기
+                    </button>
+                    <button type="submit"
+                        th:formaction="@{/client/classroom/delete}">
+                        삭제하기
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
