@@ -3,9 +3,14 @@
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/main}">
+    <head>
+        <th:block layout:fragment="style">
+            <link rel="stylesheet" th:href="@{/css/page/classroom/editor.css}">
+        </th:block>
+    </head>
     <body>
-        <div layout:fragment="content">
-            <th:block th:replace="~{fragments/classroom/tools :: tools(${url}, ${building_name})}"></th:block>
+        <th:block layout:fragment="content">
+            <div th:replace="~{fragments/classroom/tools :: tools(${url}, ${building_name})}"></div>
             <span>active classroom</span>
             <div class="room-list">
                 <div th:each="classroom : ${classrooms}"
@@ -93,6 +98,6 @@
 
                 </form>
             </div>
-        </div>
+        </th:block>
     </body>
 </html>
