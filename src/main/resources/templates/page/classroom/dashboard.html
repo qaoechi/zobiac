@@ -5,10 +5,10 @@
         layout:decorate="~{layout/main}">
     <body>
         <th:block layout:fragment="content">
-            <th:block th:replace="~{fragments/classroom/tools :: tools}"></th:block>
-            <th:block th:replace="~{fragments/classroom/status-board :: status-board}"></th:block>
-            <th:block th:replace="~{fragments/classroom/status-board :: status-board}"></th:block>
-            <th:block th:replace="~{fragments/classroom/status-board :: status-board}"></th:block>
+            <th:block th:replace="~{fragments/classroom/tools :: tools(${url}, ${building_name})}"></th:block>
+            <th:block th:replace="~{fragments/classroom/status-board :: status-board(${type})}"></th:block>
+            <th:block th:replace="~{fragments/classroom/status-board :: status-board(${type})}"></th:block>
+            <th:block th:replace="~{fragments/classroom/status-board :: status-board(${type})}"></th:block>
             <div id="dashboard-details">
                 <div>
                     details

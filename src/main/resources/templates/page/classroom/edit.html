@@ -5,7 +5,7 @@
         layout:decorate="~{layout/main}">
     <body>
         <div layout:fragment="content">
-            <th:object th:replace="~{fragments/classroom/tools :: tools}"></th:object>
+            <th:block th:replace="~{fragments/classroom/tools :: tools(${url}, ${building_name})}"></th:block>
             <span>active classroom</span>
             <div class="room-list">
                 <div th:each="classroom : ${classrooms}"

@@ -1,4 +1,4 @@
-<div th:fragment="tools" id="classroom-tools">
+<div th:fragment="tools(url, building_name)" id="classroom-tools">
     <div th:text="${building_name}">현재 건물</div>
     <a th:href="@{/client/building}" id="buildings-link">건물선택</a>
     <a th:href="@{'/client/classroom/' + ${url}}" id="dashboard-link">대시보드</a>
