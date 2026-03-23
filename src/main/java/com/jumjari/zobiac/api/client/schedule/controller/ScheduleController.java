@@ -36,7 +36,7 @@ public class ScheduleController {
             "sub", "dashboard",
             "meetings", meetingService.getAllPublic()
         ));
-        return "client";
+        return "page/schedule/dashboard";
     }
     @GetMapping("/schedule/{meeting-id}")
     public String selectSchedule(
@@ -50,7 +50,7 @@ public class ScheduleController {
             "meetingId", meetingId,
             "avails", availService.getAllByAuthAndMeeting(auth, meetingId)
         ));
-        return "client";
+        return "page/schedule/setup";
     }
     
     @PostMapping("/schedule/{meeting-id}/update")

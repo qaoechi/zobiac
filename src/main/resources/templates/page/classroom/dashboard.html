@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main}">
+    <head>
+        <th:block layout:fragment="style">
+            <link rel="stylesheet" th:href="@{/css/page/classroom/dashboard.css}">
+        </th:block>
+    </head>
+    <body>
+        <th:block layout:fragment="content">
+            <th:block th:replace="~{fragments/classroom/tools :: tools(${url}, ${building_name})}"></th:block>
+            <div id="dashboard-board">
+                <th:block th:replace="~{fragments/classroom/status-board :: status-board('수정 중')}"></th:block>
+                <th:block th:replace="~{fragments/classroom/status-board :: status-board('확인 대기')}"></th:block>
+                <th:block th:replace="~{fragments/classroom/status-board :: status-board('오래됨')}"></th:block>
+            </div>
+            <div id="dashboard-details">
+                <div>
+                    details
+                </div>
+            </div>
+            <div id="dashboard-overview">
+                <table class="status__table">
+                    <tr>
+                        <th>호수</th>
+                        <th>표지판</th>
+                        <th>앞문</th>
+                        <th>뒷문</th>
+                    </tr>
+                    <tr th:each="sign : ${signs}">
+                        <td th:text="${sign.number}">B101-1</td>
+                        <td th:text="${sign.placard}">←국제210 컴퓨터실습실</td>
+                        <td th:text="${sign.front}">국제210 컴퓨터실습실</td>
+                        <td th:text="${sign.back}">국제210 컴퓨터실습실 뒤</td>
+                    </tr>
+                </table>
+            </div>
+        </th:block>
+    </body>
+</html>

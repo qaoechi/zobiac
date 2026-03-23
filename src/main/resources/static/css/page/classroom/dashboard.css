@@ -1,0 +1,10 @@
+#dashboard-board {
+    display: flex;
+    padding: 0 2%;
+    gap: 10px;
+}
+
+.status-board {
+    width: 33%;
+    border: 1px solid black;
+}

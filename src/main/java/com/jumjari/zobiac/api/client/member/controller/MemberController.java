@@ -16,14 +16,13 @@ public class MemberController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "member";
+        return "page/profile/login";
     }
 
     @PostMapping("/logout")
     public String logout(
         HttpServletResponse response
     ) {
-
         return "redirect:/home";
     }
 }

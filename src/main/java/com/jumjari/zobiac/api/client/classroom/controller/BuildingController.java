@@ -25,10 +25,9 @@ public class BuildingController {
     @GetMapping("/building")
     public String chooseBuilding(Model model) {
         model.addAllAttributes(Map.of(
-            "main", "buildings",
             "buildings", service.getAll()
         ));
-        return "client";
+        return "page/building/map";
     }
 
     @GetMapping("/buildings")

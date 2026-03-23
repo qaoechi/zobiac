@@ -26,11 +26,10 @@ public class ClassroomController {
         Model model
     ) {
         model.addAllAttributes(Map.of(
-            "main", "dashboard",
             "building_name", buildingService.getKorFullByEngShort(building),
             "url", building,
             "signs", classroomService.getSigns(buildingService.getKorShortByEngShort(building))
         ));
-        return "client";
+        return "page/classroom/dashboard";
     }
 }

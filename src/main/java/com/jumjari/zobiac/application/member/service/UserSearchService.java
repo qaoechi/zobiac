@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
+
 import com.jumjari.zobiac.application.member.dto.ProfileRequest;
 import com.jumjari.zobiac.domain.member.entity.User;
 import com.jumjari.zobiac.domain.member.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -37,9 +37,9 @@ public class UserSearchService {
             .orElseThrow();
         
         user.updateProfile(
-            request.username(),
-            request.number(),
-            request.nickname()
+            request.getUsername(),
+            request.getNumber(),
+            request.getNickname()
         );
     }
 }

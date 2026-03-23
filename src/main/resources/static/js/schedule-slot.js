@@ -1,7 +1,7 @@
 const tbody = document.querySelector("#time-table tbody");
 const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const availsSet = new Set(scheduleData.avails.map(a => `${a.week},${a.slot}`));
 let timeSlotCount = 0;
-const availsSet = new Set(avails.map(a => `${a.week},${a.slot}`));
 
 for (let hour = 9; hour < 22; hour++) {
     for (let min of [0, 30]) {
@@ -26,7 +26,6 @@ for (let hour = 9; hour < 22; hour++) {
             tr.appendChild(td);
         });
         timeSlotCount++;
-
         tbody.appendChild(tr);
     }
 }

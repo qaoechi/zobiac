@@ -5,16 +5,16 @@ import java.util.Map;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.member.dto.ProfileRequest;
 import com.jumjari.zobiac.application.member.service.UserSearchService;
 import com.jumjari.zobiac.global.security.principal.Member;
-
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,21 +27,21 @@ public class ProfileController {
         Model model
     ) {
         model.addAllAttributes(Map.of(
-            "main", "profile",
-            "profile_request", new ProfileRequest(null, null, null)
+            "profile_request", new ProfileRequest()
         ));
-        return "client";
+        return "page/profile/setting";
     }
 
     @PostMapping("/profile/update")
     public String postMethodName(
-        ProfileRequest request,
+        @ModelAttribute("profile_request") ProfileRequest request,
         Authentication auth
     ) {
         Member member = (Member)auth.getPrincipal();
+        System.out.println("username = " + request.getUsername());
+        System.out.println("number = " + request.getNumber());
+        System.out.println("nickname = " + request.getNickname());
         userService.updateProfile(member.getId(), request);
-
         return "redirect:/home";
     }
-    
 }

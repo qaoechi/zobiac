@@ -1,5 +1,7 @@
 package com.jumjari.zobiac.application.classroom.dto;
 
+import com.jumjari.zobiac.domain.classroom.entity.DoorType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,4 +22,11 @@ public class ClassroomRequest {
     private Byte count;
     private Long parentId;
     private String memo;
+
+    public static ClassroomRequest formObject(Long buildingId) {
+        ClassroomRequest dto = new ClassroomRequest();
+        dto.setBuilding(buildingId);
+        dto.setDoorType(DoorType.IDK.name());
+        return dto;
+    }
 }

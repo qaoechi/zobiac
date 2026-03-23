@@ -1,0 +1,11 @@
+<div th:fragment="status-board(type)" class="status-board">
+    <div class="dashboard-block-tool">
+        <span th:text="${type}">타입</span>
+        <a href="">자세히보기</a>
+    </div>
+    <div>
+        <span th:text="${type} + '강의실 수: '"></span>
+        <span>12</span>
+        <span style="border: 1px solid black;">+</span>
+    </div>
+</div>

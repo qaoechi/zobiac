@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main}">
+    <head>
+        <th:block layout:fragment="style">
+            <link rel="stylesheet" th:href="@{/css/page/building/map.css}">
+        </th:block>
+    </head>
+    <body>
+        <th:block layout:fragment="content">
+            <div id="building-form">
+                <form th:action="@{/client/move-building}" method="post">
+                    건물(최소 하나 입력): 
+                    <label for="building-option"></label>
+                    <select name="option" id="building-option">
+                        <option value="">건물을 선택하세요</option>
+                        <option th:each="b : ${buildings}"
+                        th:value="${b.engShort}"
+                        th:text="${b.korFull}"></option>
+                    </select>
+                    <input type="text" name="name" id="input-building-name">
+                    <button type="submit">이동</button>
+                </form>
+            </div>
+            <div th:fragment="map" id="naver-map">
+                <div id="map"></div>
+            </div>
+        </th:block>
+        <th:block layout:fragment="javascript">
+            <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=oro4oz4a78"></script>
+            <script th:src="@{/js/naver-map.js}"></script>
+        </th:block>
+    </body>
+</html>
