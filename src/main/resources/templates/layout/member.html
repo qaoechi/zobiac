@@ -4,13 +4,17 @@
     <head>
         <meta charset="UTF-8">
         <title>회원</title>
+        <link rel="stylesheet" th:href="@{/css/base/base.css}">
+        <link rel="stylesheet" th:href="@{/css/base/variable.css}">
+        <link rel="stylesheet" th:href="@{/css/layout/member.css}">
+        <link rel="stylesheet" th:href="@{/css/layout/header.css}">
     </head>
     <body>
         <header>
             <th:block th:replace="~{fragments/header/header :: header}"></th:block>
         </header>
         <main>
-            <a th:href="@{/oauth2/authorization/kakao}">카카오 로그인</a>
+            <th:block layout:fragment="content"></th:block>
         </main>
         <footer>
             <th:block th:replace="~{fragments/footer :: footer}"></th:block>

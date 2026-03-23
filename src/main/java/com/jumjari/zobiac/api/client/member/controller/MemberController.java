@@ -16,7 +16,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "layout/member";
+        return "page/profile/login";
     }
 
     @PostMapping("/logout")
