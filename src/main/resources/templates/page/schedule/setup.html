@@ -29,7 +29,7 @@
             </table>
             <button onclick="submitSchedule()">저장</button>
         </th:block>
-        <th:block>
+        <th:block layout:fragment="javascript">
             <script type="application/json" id="schedule-data" th:inline="javascript">
                 {
                     "meetingId": [[${meetingId}]],
