@@ -1,20 +1,17 @@
-package com.jumjari.zobiac.application.schedule.dto;
-
-import java.util.List;
+package com.jumjari.zobiac.api.manager.schedule.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class Meeting {
+public class MeetingRequest {
     private Long id;
     private String title;
     private String description;
-    private boolean open;
-    private List<ParticipantResponse> participants;
+    private boolean open = true;
 }

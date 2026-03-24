@@ -2,23 +2,51 @@ package com.jumjari.zobiac.api.manager.schedule.controller;
 
 import java.util.Map;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 
+import com.jumjari.zobiac.api.manager.schedule.dto.MeetingRequest;
+import com.jumjari.zobiac.application.schedule.service.MeetingService;
+import com.jumjari.zobiac.global.security.principal.Member;
+
 @Controller("ManagerSchedule")
 @RequiredArgsConstructor
-@RequestMapping("/manager")
+@PreAuthorize("hasRole('MANAGER')")
+@RequestMapping("/manager/schedule")
 public class ScheduleController {
-    @GetMapping("/schedule")
+    private final MeetingService meetingService;
+
+    @GetMapping("")
     public String managerPage(Model model) {
-        model.addAllAttributes(Map.of(
-            "main", "schedule",
-            "sub", "써브"
+            model.addAllAttributes(Map.of(
+            "request", new MeetingRequest(),
+            "meetings", meetingService.getAll()
         ));
-        return "manager";
+        return "manager/schedule/manage";
     }
+    @PostMapping("/update")
+    public String postMethodName(
+        @ModelAttribute MeetingRequest request,
+        Authentication auth
+    ) {
+        meetingService.updateMeeting(request, ((Member)auth.getPrincipal()).getId());
+        return "redirect:/manager/schedule";
+    }
+    
+    @GetMapping("/consolidation")
+    public String consolidation(Model model) {
+        model.addAllAttributes(Map.of(
+            "asd", "Asd"
+        ));
+        return "manager/schedule/consolidation";
+    }
+    
 }

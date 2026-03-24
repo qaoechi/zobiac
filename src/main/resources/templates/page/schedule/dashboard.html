@@ -11,9 +11,17 @@
     <body>
         <th:block layout:fragment="content">
             <th:block th:each="meeting : ${meetings}">
-                <div th:text="${meeting.id}"></div>
                 <a th:href="@{'/client/schedule/' + ${meeting.id}}" th:text="${meeting.title}"></a>
             </th:block>
+            <th:block sec:authorize="hasRole('MANAGER')">
+                <button th:onclick="|location.href='@{/manager/schedule}'|">
+                    meeting manage
+                </button>
+                <button th:onclick="|location.href='@{/manager/schedule/consolidation}'|">
+                    calc time
+                </button>
+            </th:block>
+
         </th:block>
     </body>
 </html>

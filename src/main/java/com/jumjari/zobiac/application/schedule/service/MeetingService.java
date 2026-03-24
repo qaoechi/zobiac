@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.schedule.dto.Meeting;
-import com.jumjari.zobiac.application.schedule.dto.MeetingRequest;
+import com.jumjari.zobiac.api.manager.schedule.dto.MeetingRequest;
+import com.jumjari.zobiac.application.member.service.UserSearchService;
 import com.jumjari.zobiac.application.schedule.dto.MeetingResponse;
 import com.jumjari.zobiac.application.schedule.mapper.MeetingMapper;
 import com.jumjari.zobiac.domain.schedule.entity.MeetingEntity;
@@ -20,6 +20,7 @@ import com.jumjari.zobiac.domain.schedule.repository.MeetingRepository;
 public class MeetingService {
     private final MeetingRepository repository;
     private final MeetingMapper mapper;
+    private final UserSearchService userService;
 
     public MeetingResponse save(MeetingRequest request) {
         MeetingEntity m = mapper.toEntity(request);
@@ -27,10 +28,17 @@ public class MeetingService {
         return mapper.toResponse(m);
     }
 
-    public Meeting getById(Long id) {
-        return repository.findById(id)
-            .map(mapper::toDto)
-            .orElseThrow(() -> new IllegalArgumentException("meeting not found"));
+    public void updateMeeting(MeetingRequest request, Long userId) {
+        if (request.getId() == null) {
+            MeetingEntity meeting = mapper.toEntity(request);
+            meeting.setCreatedBy(userService.getUser(userId));
+            repository.save(meeting);
+        } else {
+            MeetingEntity meeting = repository.findById(request.getId()).orElseThrow(() -> new IllegalArgumentException("not found"));
+            meeting.setTitle(request.getTitle());
+            meeting.setDescription(request.getDescription());
+            meeting.setOpen(request.isOpen());
+        }
     }
     public MeetingEntity getEntityById(Long id) {
         return repository.findById(id)
@@ -42,10 +50,10 @@ public class MeetingService {
             .map(mapper::toResponse)
             .toList();
     }
-    public List<Meeting> getAllPublicDetails() {
-        return repository.findAllByOpen(true)
+    public List<MeetingResponse> getAll() {
+        return repository.findAll()
             .stream()
-            .map(mapper::toDto)
+            .map(mapper::toResponse)
             .toList();
     }
 
