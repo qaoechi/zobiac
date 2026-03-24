@@ -13,10 +13,15 @@
             <th:block th:each="meeting : ${meetings}">
                 <a th:href="@{'/client/schedule/' + ${meeting.id}}" th:text="${meeting.title}"></a>
             </th:block>
-            <button sec:authorize="hasRole('MANAGER')"
-                th:onclick="|location.href='@{/manager/schedule}'|">
-                manager
-            </button>
+            <th:block sec:authorize="hasRole('MANAGER')">
+                <button th:onclick="|location.href='@{/manager/schedule}'|">
+                    meeting manage
+                </button>
+                <button th:onclick="|location.href='@{/manager/schedule/consolidation}'|">
+                    calc time
+                </button>
+            </th:block>
+
         </th:block>
     </body>
 </html>
