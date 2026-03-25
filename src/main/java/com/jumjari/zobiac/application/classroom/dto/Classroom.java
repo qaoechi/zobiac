@@ -14,7 +14,6 @@ import lombok.Setter;
 @Setter
 public class Classroom {
     private Long id;
-    private boolean isActive;
     private Room room;
     private String name;
     private Direction direction;
