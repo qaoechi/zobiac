@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomRequest;
 import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
-import com.jumjari.zobiac.application.classroom.service.ClassroomService;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +23,6 @@ import com.jumjari.zobiac.application.classroom.service.ClassroomService;
 public class EditController {
     private final BuildingService buildingService;
     private final ClassroomFacadeService classroomService;
-    private final ClassroomService service;
 
     @GetMapping("/{building}")
     public String editPage(
@@ -53,7 +51,7 @@ public class EditController {
         byte number = Byte.parseByte(request.getNumber().substring(0, 1));
         byte floor = (byte) (basement ? -number : number);
         request.setFloor(floor);
-        service.updateClassroom(request);
+        classroomService.updateClassroom(request);
         return "redirect:/home";
     }
 }

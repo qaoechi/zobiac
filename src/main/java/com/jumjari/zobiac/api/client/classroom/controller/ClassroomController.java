@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
+import com.jumjari.zobiac.application.classroom.service.ClassroomSignService;
 
 @Controller("clientClassroom")
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 public class ClassroomController {
     private final BuildingService buildingService;
     private final ClassroomFacadeService classroomService;
+    private final ClassroomSignService signService;
 
     @GetMapping("/classroom/{building}")
     public String classroomDashboard(
@@ -29,7 +31,7 @@ public class ClassroomController {
             "building_name", buildingService.getKorFullByEngShort(building),
             "url", building,
             // "modify", classroomService.get()
-            "signs", classroomService.getSigns(buildingService.getKorShortByEngShort(building))
+            "signs", signService.getSigns(buildingService.getKorShortByEngShort(building))
         ));
         return "page/classroom/dashboard";
     }

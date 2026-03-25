@@ -14,12 +14,12 @@ import com.jumjari.zobiac.domain.classroom.repository.ClassroomRepository;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ClassroomService {
+class ClassroomCommandService {
     private final ClassroomRepository repository;
     private final BuildingService buildingService;
     private final RoomService roomService;
 
-    public void updateClassroom(ClassroomRequest requset) {
+    void updateClassroom(ClassroomRequest requset) {
         if (requset.getId() == requset.getParentId() || requset.getBuilding() == null) new IllegalArgumentException("not select");
         BuildingEntity building = buildingService.getById(requset.getBuilding());
         if (requset.getId() == null) {
@@ -29,7 +29,7 @@ public class ClassroomService {
         }
     }
 
-    private void create(ClassroomRequest request, BuildingEntity building) {
+    void create(ClassroomRequest request, BuildingEntity building) {
         RoomEntity room = roomService.findOrCreate(request, building);
         ClassroomEntity classroom = ClassroomEntity.create(
             room, request.getName(),
