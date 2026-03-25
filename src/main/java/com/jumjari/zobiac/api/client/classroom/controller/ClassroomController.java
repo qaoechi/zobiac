@@ -28,6 +28,7 @@ public class ClassroomController {
         model.addAllAttributes(Map.of(
             "building_name", buildingService.getKorFullByEngShort(building),
             "url", building,
+            // "modify", classroomService.get()
             "signs", classroomService.getSigns(buildingService.getKorShortByEngShort(building))
         ));
         return "page/classroom/dashboard";

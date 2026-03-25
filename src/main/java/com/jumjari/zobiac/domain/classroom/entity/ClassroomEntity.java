@@ -64,6 +64,9 @@ public class ClassroomEntity {
     @Column(name = "memo", columnDefinition = "TEXT")
     private String memo;
 
+    @Column(name = "status", length = 10, nullable = false)
+    private Status status;
+
     @OneToMany(mappedBy = "parent")
     private List<ClassroomEntity> children = new ArrayList<>();
 

@@ -2,6 +2,7 @@ package com.jumjari.zobiac.application.classroom.dto;
 
 import com.jumjari.zobiac.domain.classroom.entity.Direction;
 import com.jumjari.zobiac.domain.classroom.entity.DoorType;
+import com.jumjari.zobiac.domain.classroom.entity.Status;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +22,5 @@ public class Classroom {
     private Byte count;
     private Classroom parent;
     private String memo;
+    private Status status;
 }
