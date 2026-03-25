@@ -64,6 +64,7 @@ public class ClassroomEntity {
     @Column(name = "memo", columnDefinition = "TEXT")
     private String memo;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 10, nullable = false)
     private Status status;
 
