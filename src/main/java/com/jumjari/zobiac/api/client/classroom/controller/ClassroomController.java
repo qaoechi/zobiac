@@ -1,8 +1,10 @@
 package com.jumjari.zobiac.api.client.classroom.controller;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomSignService;
 import com.jumjari.zobiac.domain.classroom.entity.Status;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller("clientClassroom")
 @RequiredArgsConstructor
@@ -41,4 +45,17 @@ public class ClassroomController {
         ));
         return "page/classroom/dashboard";
     }
+
+    @GetMapping("/{building}/download")
+    public ResponseEntity<byte[]> downloadFile(
+        @PathVariable("building") String building,
+        @RequestParam String type
+    ) {
+        Status status = Status.valueOf(type.toUpperCase());
+        return ResponseEntity.ok()
+            .header("Content-Disposition", "attachment; filename=" + building + ".csv")
+            .header("Content-type", "text/csv")
+            .body(signService.getCsv(signService.getSigns(null)));
+    }
+    
 }

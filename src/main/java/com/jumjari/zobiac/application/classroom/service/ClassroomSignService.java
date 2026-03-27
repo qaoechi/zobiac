@@ -21,7 +21,7 @@ public class ClassroomSignService {
     public List<ClassroomSign> getSigns(String building) {
         List<ClassroomSign> result = new ArrayList<>();
 
-        List<Classroom> classrooms = service.getClassroomsByBuildingTrue(building);
+        List<Classroom> classrooms = service.getClassroomsByBuilding(building);
         for (Classroom classroom : classrooms) {
             Room room = classroom.getRoom();
             String floor = (room.getFloor() < 0) ? "B" + room.getNumber() : room.getNumber();
@@ -60,5 +60,20 @@ public class ClassroomSignService {
             result.add(sign);
         }
         return result;
+    }
+
+    public byte[] getCsv(List<ClassroomSign> signs) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID, 호수, 표지판, 앞문, 뒷문, 중문{기타}\n");
+        for (ClassroomSign sign : signs) {
+            sb.append(sign.getId()).append(",")
+            .append(sign.getNumber()).append(",")
+            .append(sign.getPlacard()).append(",")
+            .append(sign.getFront()).append(",")
+            .append(sign.getBack()).append(",")
+            .append(sign.getOther()).append(",")
+            .append(sign.getMemo()).append("\n");
+        }
+        return sb.toString().replaceAll("null", "").getBytes(StandardCharsets.UTF_8);
     }
 }
