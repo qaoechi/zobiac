@@ -2,7 +2,6 @@ package com.jumjari.zobiac.application.classroom.service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -29,14 +28,10 @@ class ClassroomSearchService {
         return mapper.toBoards(entities).stream()
             .collect(Collectors.groupingBy(ClassroomBoardResponse::getStatus));
     }
-    // Optional<ClassroomDetail> getClassroomById(Long id) {
-    //     return repository.findById(id)
-    //         .map(mapper::toDto);
-    // }
-    List<ClassroomDetail> getClassroomsByBuilding(String kroFull) {
-        return repository.findAllByRoom_Building_korFull(kroFull)
-            .stream()
-            .map(mapper::toDto)
-            .toList();
+    List<ClassroomDetail> getClassroomsByBuilding(String korFull) {
+        return mapper.toDetails(repository.findAllByRoom_Building_korFull(korFull));
+    }
+    List<ClassroomDetail> getClassroomsByBuildingAndStatus(String korfull, Status status) {
+        return mapper.toDetails(repository.findAllByRoom_Building_korFullAndStatus(korfull, status));
     }
 }

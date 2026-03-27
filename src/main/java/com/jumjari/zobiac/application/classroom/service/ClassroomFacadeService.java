@@ -6,8 +6,6 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.persistence.EntityNotFoundException;
-
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.ClassroomDetail;
@@ -23,12 +21,11 @@ public class ClassroomFacadeService {
     private final ClassroomSearchService search;
     private final ClassroomCommandService commnad;
 
-    // public ClassroomDetail getById(Long id) {
-    //     return search.getClassroomById(id)
-    //         .orElseThrow(() -> new EntityNotFoundException("classroom not found"));
-    // }
     public List<ClassroomDetail> getClassroomsByBuilding(String korFull) {
         return search.getClassroomsByBuilding(korFull);
+    }
+    public List<ClassroomDetail> getClassroomsByBuildingAndStatus(String korFull, Status status) {
+        return search.getClassroomsByBuildingAndStatus(korFull, status);
     }
     public Map<Status, List<ClassroomBoardResponse>> getGroups() {
         return search.getGroupsByStatus();

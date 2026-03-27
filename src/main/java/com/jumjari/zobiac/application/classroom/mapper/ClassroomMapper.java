@@ -10,7 +10,8 @@ import com.jumjari.zobiac.domain.classroom.entity.ClassroomEntity;
 
 @Mapper(componentModel = "spring", uses = RoomMapper.class)
 public interface ClassroomMapper {
-    ClassroomDetail toDto(ClassroomEntity entity);
-    ClassroomEntity toEntity(ClassroomDetail dto);
+    ClassroomDetail toDetail(ClassroomEntity entity);
+    List<ClassroomDetail> toDetails(List<ClassroomEntity> entities);
+
     List<ClassroomBoardResponse> toBoards(List<ClassroomEntity> entities);
 }

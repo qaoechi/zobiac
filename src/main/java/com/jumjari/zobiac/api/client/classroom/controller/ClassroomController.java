@@ -1,6 +1,5 @@
 package com.jumjari.zobiac.api.client.classroom.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +40,7 @@ public class ClassroomController {
             "unchecked", group.getOrDefault(Status.UNCHECKED, List.of()),
             "stale", group.getOrDefault(Status.STALE, List.of()),
             "normal", group.getOrDefault(Status.NORMAL, List.of()),
-            "signs", signService.getSigns(buildingService.getKorShortByEngShort(building))
+            "signs", signService.getSigns(classroomService.getClassroomsByBuilding(buildingService.getKorShortByEngShort(building)))
         ));
         return "page/classroom/dashboard";
     }
@@ -55,7 +54,7 @@ public class ClassroomController {
         return ResponseEntity.ok()
             .header("Content-Disposition", "attachment; filename=" + building + ".csv")
             .header("Content-type", "text/csv")
-            .body(signService.getCsv(signService.getSigns(null)));
+            .body(signService.getCsv(signService.getSigns(classroomService.getClassroomsByBuildingAndStatus(buildingService.getKorShortByEngShort(building), status))));
     }
     
 }

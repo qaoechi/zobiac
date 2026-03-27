@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,14 +14,9 @@ import com.jumjari.zobiac.application.classroom.dto.ClassroomSign;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class ClassroomSignService {
-    private final ClassroomSearchService service;
-
-    public List<ClassroomSign> getSigns(String building) {
+    public List<ClassroomSign> getSigns(List<ClassroomDetail> classrooms) {
         List<ClassroomSign> result = new ArrayList<>();
-
-        List<ClassroomDetail> classrooms = service.getClassroomsByBuilding(building);
         for (ClassroomDetail classroom : classrooms) {
             Room room = classroom.getRoom();
             String floor = (room.getFloor() < 0) ? "B" + room.getNumber() : room.getNumber();
