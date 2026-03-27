@@ -8,3 +8,7 @@
     width: 33%;
     border: 1px solid black;
 }
+
+.hidden {
+    display: none;
+}
