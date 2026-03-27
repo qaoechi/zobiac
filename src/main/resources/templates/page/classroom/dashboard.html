@@ -12,9 +12,9 @@
         <th:block layout:fragment="content">
             <th:block th:replace="~{fragments/classroom/tools :: tools(${url}, ${building_name})}"></th:block>
             <div id="dashboard-board">
-                <th:block th:replace="~{fragments/classroom/status-board :: status-board('수정 중')}"></th:block>
-                <th:block th:replace="~{fragments/classroom/status-board :: status-board('확인 대기')}"></th:block>
-                <th:block th:replace="~{fragments/classroom/status-board :: status-board('오래됨')}"></th:block>
+                <th:block th:replace="~{fragments/classroom/status-board :: status-board(${unchecked}, 'unchecked')}"></th:block>
+                <th:block th:replace="~{fragments/classroom/status-board :: status-board(${stale}, 'stale')}"></th:block>
+                <th:block th:replace="~{fragments/classroom/status-board :: status-board(${normal}, 'normal')}"></th:block>
             </div>
             <div id="dashboard-details">
                 <div>

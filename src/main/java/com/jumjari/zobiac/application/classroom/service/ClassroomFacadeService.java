@@ -1,6 +1,7 @@
 package com.jumjari.zobiac.application.classroom.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,8 +11,10 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import com.jumjari.zobiac.application.classroom.dto.Classroom;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomBoardResponse;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomRequest;
 import com.jumjari.zobiac.domain.classroom.entity.BuildingEntity;
+import com.jumjari.zobiac.domain.classroom.entity.Status;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +29,9 @@ public class ClassroomFacadeService {
     }
     public List<Classroom> getClassroomsByBuildingTrue(String korFull) {
         return search.getClassroomsByBuildingTrue(korFull);
+    }
+    public Map<Status, List<ClassroomBoardResponse>> getGroups() {
+        return search.getGroupsByStatus();
     }
 
     public void updateClassroom(ClassroomRequest requset) {

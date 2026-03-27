@@ -1,5 +1,6 @@
 package com.jumjari.zobiac.api.client.classroom.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 
+import com.jumjari.zobiac.application.classroom.dto.ClassroomBoardResponse;
 import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomSignService;
+import com.jumjari.zobiac.domain.classroom.entity.Status;
 
 @Controller("clientClassroom")
 @RequiredArgsConstructor
@@ -27,10 +30,13 @@ public class ClassroomController {
         @PathVariable("building") String building,
         Model model
     ) {
+        Map<Status, List<ClassroomBoardResponse>> group = classroomService.getGroups();
         model.addAllAttributes(Map.of(
             "building_name", buildingService.getKorFullByEngShort(building),
             "url", building,
-            // "modify", classroomService.get()
+            "unchecked", group.getOrDefault(Status.UNCHECKED, List.of()),
+            "stale", group.getOrDefault(Status.STALE, List.of()),
+            "normal", group.getOrDefault(Status.NORMAL, List.of()),
             "signs", signService.getSigns(buildingService.getKorShortByEngShort(building))
         ));
         return "page/classroom/dashboard";
