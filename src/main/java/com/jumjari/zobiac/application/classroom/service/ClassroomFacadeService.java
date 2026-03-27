@@ -10,7 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.classroom.dto.Classroom;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomDetail;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomBoardResponse;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomRequest;
 import com.jumjari.zobiac.domain.classroom.entity.BuildingEntity;
@@ -23,12 +23,12 @@ public class ClassroomFacadeService {
     private final ClassroomSearchService search;
     private final ClassroomCommandService commnad;
 
-    public Classroom getById(Long id) {
-        return search.getClassroomById(id)
-            .orElseThrow(() -> new EntityNotFoundException("classroom not found"));
-    }
-    public List<Classroom> getClassroomsByBuildingTrue(String korFull) {
-        return search.getClassroomsByBuildingTrue(korFull);
+    // public ClassroomDetail getById(Long id) {
+    //     return search.getClassroomById(id)
+    //         .orElseThrow(() -> new EntityNotFoundException("classroom not found"));
+    // }
+    public List<ClassroomDetail> getClassroomsByBuilding(String korFull) {
+        return search.getClassroomsByBuilding(korFull);
     }
     public Map<Status, List<ClassroomBoardResponse>> getGroups() {
         return search.getGroupsByStatus();

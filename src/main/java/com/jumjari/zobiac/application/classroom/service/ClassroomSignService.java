@@ -1,5 +1,6 @@
 package com.jumjari.zobiac.application.classroom.service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.classroom.dto.Classroom;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomDetail;
 import com.jumjari.zobiac.application.classroom.dto.Room;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomSign;
 
@@ -21,8 +22,8 @@ public class ClassroomSignService {
     public List<ClassroomSign> getSigns(String building) {
         List<ClassroomSign> result = new ArrayList<>();
 
-        List<Classroom> classrooms = service.getClassroomsByBuilding(building);
-        for (Classroom classroom : classrooms) {
+        List<ClassroomDetail> classrooms = service.getClassroomsByBuilding(building);
+        for (ClassroomDetail classroom : classrooms) {
             Room room = classroom.getRoom();
             String floor = (room.getFloor() < 0) ? "B" + room.getNumber() : room.getNumber();
             String placard;

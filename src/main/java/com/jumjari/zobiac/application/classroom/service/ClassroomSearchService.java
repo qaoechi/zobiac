@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.classroom.dto.Classroom;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomBoardResponse;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomDetail;
 import com.jumjari.zobiac.application.classroom.mapper.ClassroomMapper;
 import com.jumjari.zobiac.domain.classroom.entity.ClassroomEntity;
 import com.jumjari.zobiac.domain.classroom.entity.Status;
@@ -29,11 +29,11 @@ class ClassroomSearchService {
         return mapper.toBoards(entities).stream()
             .collect(Collectors.groupingBy(ClassroomBoardResponse::getStatus));
     }
-    Optional<Classroom> getClassroomById(Long id) {
-        return repository.findById(id)
-            .map(mapper::toDto);
-    }
-    List<Classroom> getClassroomsByBuildingTrue(String kroFull) {
+    // Optional<ClassroomDetail> getClassroomById(Long id) {
+    //     return repository.findById(id)
+    //         .map(mapper::toDto);
+    // }
+    List<ClassroomDetail> getClassroomsByBuilding(String kroFull) {
         return repository.findAllByRoom_Building_korFull(kroFull)
             .stream()
             .map(mapper::toDto)

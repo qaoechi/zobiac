@@ -37,7 +37,7 @@ public class EditController {
             "url", building,
             "building_name", buildingService.getKorFullByEngShort(building),
             "buildings", buildingService.getAll(),
-            "classrooms", classroomService.getClassroomsByBuildingTrue(buildingService.getKorFullByEngShort(building)),
+            "classrooms", classroomService.getClassroomsByBuilding(buildingService.getKorFullByEngShort(building)),
             "request", ClassroomRequest.formObject(buildingService.getByEng(building).getId())
         ));
         return "page/classroom/edit";
