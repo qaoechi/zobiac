@@ -57,18 +57,37 @@ public class ClassroomSignService {
         return result;
     }
 
-    public byte[] getCsv(List<ClassroomSign> signs) {
+    // public byte[] getCsv(List<ClassroomSign> signs) {
+    //     StringBuilder sb = new StringBuilder();
+    //     sb.append("ID, 호수, 표지판, 앞문, 뒷문, 중문{기타}\n");
+    //     for (ClassroomSign sign : signs) {
+    //         sb.append(nvl(sign.getId())).append(",")
+    //         .append(nvl(sign.getNumber())).append(",")
+    //         .append(nvl(sign.getPlacard())).append(",")
+    //         .append(nvl(sign.getFront())).append(",")
+    //         .append(nvl(sign.getBack())).append(",")
+    //         .append(nvl(sign.getOther())).append(",")
+    //         .append(nvl(sign.getMemo())).append("\n");
+    //     }
+    //     return sb.toString().replaceAll("null", "").getBytes(StandardCharsets.UTF_8);
+    // }
+    public List<String> getCsv(List<ClassroomSign> signs) {
+        List<String> line = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         sb.append("ID, 호수, 표지판, 앞문, 뒷문, 중문{기타}\n");
         for (ClassroomSign sign : signs) {
-            sb.append(sign.getId()).append(",")
-            .append(sign.getNumber()).append(",")
-            .append(sign.getPlacard()).append(",")
-            .append(sign.getFront()).append(",")
-            .append(sign.getBack()).append(",")
-            .append(sign.getOther()).append(",")
-            .append(sign.getMemo()).append("\n");
+            sb.append(nvl(sign.getId())).append(",")
+            .append(nvl(sign.getNumber())).append(",")
+            .append(nvl(sign.getPlacard())).append(",")
+            .append(nvl(sign.getFront())).append(",")
+            .append(nvl(sign.getBack())).append(",")
+            .append(nvl(sign.getOther())).append(",")
+            .append(nvl(sign.getMemo())).append("\n");
+            line.add(sb.toString());
         }
-        return sb.toString().replaceAll("null", "").getBytes(StandardCharsets.UTF_8);
+        return line;
+    }
+    private String nvl(Object o) {
+        return (o == null) ? "" : o.toString();
     }
 }
