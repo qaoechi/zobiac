@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,8 +17,8 @@ import com.jumjari.zobiac.application.classroom.dto.ClassroomBoardResponse;
 import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomSignService;
+import com.jumjari.zobiac.application.classroom.service.SignHelperService;
 import com.jumjari.zobiac.domain.classroom.entity.Status;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller("clientClassroom")
@@ -27,6 +28,7 @@ public class ClassroomController {
     private final BuildingService buildingService;
     private final ClassroomFacadeService classroomService;
     private final ClassroomSignService signService;
+    private final SignHelperService hepler;
 
     @GetMapping("/classroom/{building}")
     public String classroomDashboard(
@@ -54,7 +56,7 @@ public class ClassroomController {
         return ResponseEntity.ok()
             .header("Content-Disposition", "attachment; filename=" + building + ".csv")
             .header("Content-type", "text/csv")
-            .body(signService.getCsv(signService.getSigns(classroomService.getClassroomsByBuildingAndStatus(buildingService.getKorShortByEngShort(building), status))));
+            .body(hepler.getBytes(signService.getCsv(signService.getSigns(classroomService.getClassroomsByBuildingAndStatus(buildingService.getKorShortByEngShort(building), status)))));
     }
     
 }

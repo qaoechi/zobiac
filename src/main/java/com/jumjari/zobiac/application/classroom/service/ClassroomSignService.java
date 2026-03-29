@@ -74,8 +74,8 @@ public class ClassroomSignService {
     public List<String> getCsv(List<ClassroomSign> signs) {
         List<String> line = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        sb.append("ID, 호수, 표지판, 앞문, 뒷문, 중문{기타}\n");
         for (ClassroomSign sign : signs) {
+            sb.setLength(0);
             sb.append(nvl(sign.getId())).append(",")
             .append(nvl(sign.getNumber())).append(",")
             .append(nvl(sign.getPlacard())).append(",")
