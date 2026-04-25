@@ -98,5 +98,11 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.jumjari</groupId>
+			<artifactId>jumyeok-sign</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

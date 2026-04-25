@@ -17,4 +17,12 @@ public class ClassroomSign {
     private String back;
     private String other;
     private String memo;
+
+    @Override
+    public String toString() {
+        return placard + " " + nvl(front) + nvl(back);
+    }
+    private String nvl(String s) {
+        return (s == null) ? "" : s;
+    }
 }

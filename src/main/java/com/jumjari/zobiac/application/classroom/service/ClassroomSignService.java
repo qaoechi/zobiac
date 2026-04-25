@@ -4,25 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import com.jumjari.zobiac.application.classroom.dto.Classroom;
+import com.jumjari.zobiac.application.classroom.dto.ClassroomDetail;
 import com.jumjari.zobiac.application.classroom.dto.Room;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomSign;
+import com.jumyeok.ClassroomJumyeok;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class ClassroomSignService {
-    private final ClassroomSearchService service;
-
-    public List<ClassroomSign> getSigns(String building) {
+    public List<ClassroomSign> getSigns(List<ClassroomDetail> classrooms) {
         List<ClassroomSign> result = new ArrayList<>();
-
-        List<Classroom> classrooms = service.getClassroomsByBuildingTrue(building);
-        for (Classroom classroom : classrooms) {
+        for (ClassroomDetail classroom : classrooms) {
             Room room = classroom.getRoom();
             String floor = (room.getFloor() < 0) ? "B" + room.getNumber() : room.getNumber();
             String placard;
@@ -30,7 +25,7 @@ public class ClassroomSignService {
             if(floor.length() <= 2) {
                 placard = classroom.getName();
             } else {
-                placard = room.getBuilding().getKorShort() + " " + floor;
+                placard = room.getBuilding().getKorShort() + floor;
                 if (!classroom.getName().isEmpty()) {
                     placard += " " + classroom.getName();
                 }
@@ -60,5 +55,30 @@ public class ClassroomSignService {
             result.add(sign);
         }
         return result;
+    }
+    public List<String> getCsv(List<ClassroomSign> signs) {
+        List<String> line = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        for (ClassroomSign sign : signs) {
+            sb.setLength(0);
+            sb.append(nvl(sign.getId())).append(",")
+            .append(nvl(sign.getNumber())).append(",")
+            .append(nvl(sign.getPlacard())).append(",")
+            .append(nvl(sign.getFront())).append(",")
+            .append(nvl(sign.getBack())).append(",")
+            .append(nvl(sign.getOther())).append(",")
+            .append(nvl(sign.getMemo())).append("\n");
+            line.add(sb.toString());
+        }
+        return line;
+    }
+    public byte[] getBRF(List<ClassroomSign> file) {
+        ClassroomJumyeok jumyeok = new ClassroomJumyeok();
+        jumyeok.setInput(file.stream().map(ClassroomSign::toString).toList());
+        return jumyeok.classroomSign().getBytes();
+    }
+
+    private String nvl(Object o) {
+        return (o == null) ? "" : o.toString();
     }
 }

@@ -13,14 +13,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Classroom {
+public class ClassroomDetail {
     private Long id;
     private Room room;
     private String name;
     private Direction direction;
     private DoorType type;
     private Byte count;
-    private Classroom parent;
+    private ClassroomDetail parent;
     private String memo;
     private Status status;
 }

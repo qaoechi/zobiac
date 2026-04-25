@@ -1,7 +1,8 @@
-<div th:fragment="status-board(classrooms, type)" class="status-board">
+<div th:fragment="status-board(classrooms, url, type)" class="status-board">
     <div class="dashboard-block-tool">
         <span th:text="${type}">타입</span>
-        <span th:attr="data-key=${type}" th:onclick="|toggleBoard(this)|">펼치기</span>
+        <a th:href="@{/client/{url}/download(url=${url}, type=${type})}">다운로드</a>
+        <span href="#" th:attr="data-key=${type}" th:onclick="|toggleBoard(this)|">펼치기</span>
     </div>
     <div th:id="|list-${type}|" class="hidden">
         <th:block th:each="classroom : ${classrooms}">
