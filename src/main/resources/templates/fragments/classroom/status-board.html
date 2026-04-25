@@ -1,7 +1,7 @@
 <div th:fragment="status-board(classrooms, type)" class="status-board">
     <div class="dashboard-block-tool">
         <span th:text="${type}">타입</span>
-        <a href="#" th:attr="data-key=${type}" th:onclick="|toggleBoard(this)|">펼치기</a>
+        <span th:attr="data-key=${type}" th:onclick="|toggleBoard(this)|">펼치기</span>
     </div>
     <div th:id="|list-${type}|" class="hidden">
         <th:block th:each="classroom : ${classrooms}">
