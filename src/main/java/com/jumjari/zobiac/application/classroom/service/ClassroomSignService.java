@@ -1,6 +1,5 @@
 package com.jumjari.zobiac.application.classroom.service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomDetail;
 import com.jumjari.zobiac.application.classroom.dto.Room;
 import com.jumjari.zobiac.application.classroom.dto.ClassroomSign;
+import com.jumyeok.ClassroomJumyeok;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +25,7 @@ public class ClassroomSignService {
             if(floor.length() <= 2) {
                 placard = classroom.getName();
             } else {
-                placard = room.getBuilding().getKorShort() + " " + floor;
+                placard = room.getBuilding().getKorShort() + floor;
                 if (!classroom.getName().isEmpty()) {
                     placard += " " + classroom.getName();
                 }
@@ -56,21 +56,6 @@ public class ClassroomSignService {
         }
         return result;
     }
-
-    // public byte[] getCsv(List<ClassroomSign> signs) {
-    //     StringBuilder sb = new StringBuilder();
-    //     sb.append("ID, 호수, 표지판, 앞문, 뒷문, 중문{기타}\n");
-    //     for (ClassroomSign sign : signs) {
-    //         sb.append(nvl(sign.getId())).append(",")
-    //         .append(nvl(sign.getNumber())).append(",")
-    //         .append(nvl(sign.getPlacard())).append(",")
-    //         .append(nvl(sign.getFront())).append(",")
-    //         .append(nvl(sign.getBack())).append(",")
-    //         .append(nvl(sign.getOther())).append(",")
-    //         .append(nvl(sign.getMemo())).append("\n");
-    //     }
-    //     return sb.toString().replaceAll("null", "").getBytes(StandardCharsets.UTF_8);
-    // }
     public List<String> getCsv(List<ClassroomSign> signs) {
         List<String> line = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
@@ -87,6 +72,12 @@ public class ClassroomSignService {
         }
         return line;
     }
+    public byte[] getBRF(List<ClassroomSign> file) {
+        ClassroomJumyeok jumyeok = new ClassroomJumyeok();
+        jumyeok.setInput(file.stream().map(ClassroomSign::toString).toList());
+        return jumyeok.classroomSign().getBytes();
+    }
+
     private String nvl(Object o) {
         return (o == null) ? "" : o.toString();
     }

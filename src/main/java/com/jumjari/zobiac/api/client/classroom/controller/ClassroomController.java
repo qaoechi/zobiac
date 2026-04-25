@@ -17,7 +17,6 @@ import com.jumjari.zobiac.application.classroom.dto.ClassroomBoardResponse;
 import com.jumjari.zobiac.application.classroom.service.BuildingService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomFacadeService;
 import com.jumjari.zobiac.application.classroom.service.ClassroomSignService;
-import com.jumjari.zobiac.application.classroom.service.SignHelperService;
 import com.jumjari.zobiac.domain.classroom.entity.Status;
 
 
@@ -28,7 +27,6 @@ public class ClassroomController {
     private final BuildingService buildingService;
     private final ClassroomFacadeService classroomService;
     private final ClassroomSignService signService;
-    private final SignHelperService hepler;
 
     @GetMapping("/classroom/{building}")
     public String classroomDashboard(
@@ -54,9 +52,10 @@ public class ClassroomController {
     ) {
         Status status = Status.valueOf(type.toUpperCase());
         return ResponseEntity.ok()
-            .header("Content-Disposition", "attachment; filename=" + building + ".csv")
-            .header("Content-type", "text/csv")
-            .body(hepler.getBytes(signService.getCsv(signService.getSigns(classroomService.getClassroomsByBuildingAndStatus(buildingService.getKorShortByEngShort(building), status)))));
+            .header("Content-Disposition", "attachment; filename=" + building + ".brf")
+            .header("Content-type", "application/octet-stream")
+            .body(signService.getBRF(signService.getSigns(classroomService.getClassroomsByBuildingAndStatus(buildingService.getKorShortByEngShort(building), status))));
+            // .body(hepler.getBytes(signService.getCsv(signService.getSigns(classroomService.getClassroomsByBuildingAndStatus(buildingService.getKorShortByEngShort(building), status)))));
     }
     
 }
