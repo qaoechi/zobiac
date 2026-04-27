@@ -35,7 +35,8 @@ class ClassroomCommandService {
             room, request.getName(),
             request.getDirection(),
             request.getDoorType(),
-            request.getCount(),
+            Byte.valueOf(request.getCount()),
+            request.getStatus(),
             (request.getParentId() == null) ? null : repository.findById(request.getParentId()).orElseThrow(() -> new IllegalArgumentException("not found")),
             request.getMemo()
         );
@@ -58,7 +59,8 @@ class ClassroomCommandService {
             targetRoom,
             request.getDirection(),
             request.getDoorType(),
-            request.getCount(),
+            Byte.valueOf(request.getCount()),
+            request.getStatus(),
             (request.getParentId() == null) ? null : repository.findById(request.getParentId()).orElseThrow(),
             request.getMemo());
     }

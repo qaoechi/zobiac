@@ -31,9 +31,9 @@ public class ClassroomRequest {
     @Size(max = 100, message = "이름이 너무 깁니다")
     private String name;
     @NotNull(message = "방향을 입력하세요")
-    private String direction;
+    private Direction direction;
     @NotNull(message = "문 타입을 입력하세요")
-    private String doorType;
+    private DoorType doorType;
     @NotNull(message = "문 개수를 입력하세요")
     @Min(value = 0, message = "0 이상 정수를 입력하세요")
     private Byte count;

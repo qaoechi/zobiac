@@ -74,28 +74,31 @@ public class ClassroomEntity {
     public static ClassroomEntity create(
         RoomEntity room,
         String name,
-        String direction,
-        String doorType,
+        Direction direction,
+        DoorType doorType,
         Byte count,
+        Status status,
         ClassroomEntity parentId,
         String memo
     ) {
         ClassroomEntity classroom = new ClassroomEntity();
         classroom.room = room;
         classroom.name = name;
-        classroom.direction = Direction.valueOf(direction);
-        classroom.type = DoorType.valueOf(doorType);
+        classroom.direction = direction;
+        classroom.type = doorType;
         classroom.count = count;
+        classroom.status = status;
         classroom.parent = parentId;
         classroom.memo = memo;
         return classroom;
     }
 
-    public void update(RoomEntity room, String direction, String doortype, Byte count, ClassroomEntity parent, String memo) {
+    public void update(RoomEntity room, Direction direction, DoorType doortype, Byte count, Status status, ClassroomEntity parent, String memo) {
         this.room = room;
-        this.direction = Direction.valueOf(direction);
-        this.type = DoorType.valueOf(doortype);
+        this.direction = direction;
+        this.type = doortype;
         this.count = count;
+        this.status = status;
         this.parent = parent;
         this.memo = memo;
     }
