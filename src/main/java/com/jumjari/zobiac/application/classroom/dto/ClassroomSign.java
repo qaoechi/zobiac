@@ -20,9 +20,9 @@ public class ClassroomSign {
 
     @Override
     public String toString() {
-        return placard + " " + nvl(front) + nvl(back);
+        return placard + nvl(front) + nvl(back);
     }
     private String nvl(String s) {
-        return (s == null) ? "" : s;
+        return (s == null) ? "" : " " + s;
     }
 }
