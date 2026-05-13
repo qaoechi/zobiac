@@ -1,14 +1,14 @@
 function mapToEditForm(data) {
     return {
         id: data.id,
-        building: data.room.building,
+        building: data.room.building.id,
         number: data.room.number,
-        basement: data.room.floor[0] == "-" ? true : false,
+        basement: data.room.floor < 0,
         name: data.name,
         direction: data.direction,
-        doorType: data.doorType,
+        doorType: data.type,
         count: data.count,
-        parentId: data.parentId,
+        parentId: data.parent?.id,
         memo: data.memo
     }
 }
@@ -18,10 +18,14 @@ document.querySelectorAll(".room-item").forEach(div => {
             div.classList.add("selected");
             selectedRoom = div;
             
-            Object.entries(classrooms.find(d => d.id == div.dataset.id))
+            const data = mapToEditForm(classrooms.find(d => d.id == div.dataset.id));
+            Object.entries(data)
                 .forEach(([key, value]) => {
                     const input = editForm.elements.namedItem(key);
-                    if (input) input.value = value;
+                    if (input) {
+                        if (input.type === "checkbox") input.checked = value;
+                        input.value = value ?? "";
+                    }
                 })
             return;
         }

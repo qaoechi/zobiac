@@ -82,12 +82,13 @@
                     <!-- <input type="hidden" name="parentId" id="parentId"> -->
                     <select th:field="*{parentId}">
                         <option value="">강의실을 선택하세요</option>
-                        <option th:each="c : ${classroomList}"
+                        <option th:each="c : ${classrooms}"
                             th:value="${c.id}"
                             th:text="${c.room.number} + ${c.name}">
                         </option>
                     </select>
                     <div id="dropZone">부모 강의실</div>
+                    <div th:if="${#fields.hasErrors('parentId')}" th:errors="*{parentId}"></div>
 
                     <label for="memo">메모: </label>
                     <input type="text" th:field="*{memo}">
@@ -112,8 +113,9 @@
                 }
             </script>
             <script th:src="@{/js/edit-data.js}" defer></script>
-            <script th:src="@{/js/edit-submit.js}" defer></script>
             <script th:src="@{/js/edit-selection.js}" defer></script>
+            <script th:src="@{/js/edit-dragdrop.js}" defer></script>
+            <script th:src="@{/js/edit-submit.js}" defer></script>
         </th:block>
     </body>
 </html>
