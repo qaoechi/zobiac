@@ -1,11 +1,12 @@
-<div th:fragment="status-board(type)" class="status-board">
+<div th:fragment="status-board(classrooms, url, type)" class="status-board">
     <div class="dashboard-block-tool">
         <span th:text="${type}">타입</span>
-        <a href="">자세히보기</a>
+        <a th:href="@{/client/{url}/download(url=${url}, type=${type})}">다운로드</a>
+        <span href="#" th:attr="data-key=${type}" th:onclick="|toggleBoard(this)|">펼치기</span>
     </div>
-    <div>
-        <span th:text="|${type} + 강의실 수: |"></span>
-        <span>12</span>
-        <span style="border: 1px solid black;">+</span>
+    <div th:id="|list-${type}|" class="hidden">
+        <th:block th:each="classroom : ${classrooms}">
+            <div th:text="|${classroom.room.floor < 0 ? 'B':''}${classroom.room.number} ${classroom.name}|">101 강의실</div>
+        </th:block>
     </div>
 </div>

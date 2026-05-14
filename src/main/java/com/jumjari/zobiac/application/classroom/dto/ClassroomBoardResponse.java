@@ -5,10 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+import com.jumjari.zobiac.domain.classroom.entity.Status;
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class BuildingSearchRequest {
-    private String korFull;
+public class ClassroomBoardResponse {
+    private Room room;
+    private String name;
+    private Status status;
 }

@@ -14,7 +14,7 @@
             <span>active classroom</span>
             <div class="room-list">
                 <div th:each="classroom : ${classrooms}"
-                    th:text="${classroom.room.number} + ' ' + ${classroom.name}"
+                    th:text="${classroom.room.floor < 0 ? 'B' : ''} + ${classroom.room.number} + ' ' + ${classroom.name}"
                     th:data-id="${classroom.id}"
                     class="room-item"
                     draggable="true">
@@ -23,6 +23,7 @@
             </div>
             <div id="editor-form">
                 <form th:action="@{/client/edit}" method="post" th:object="${request}" id="editorForm">
+                    <input type="hidden" name="redirectUrl" th:value="${redirectUrl}">
 
                     <label for="building">건물: </label>
                     <select th:field="*{building}">
@@ -32,18 +33,20 @@
                             th:text="${o.korFull}">
                         </option>
                     </select>
+                    <div th:if="${#fields.hasErrors('building')}" th:errors="*{building}"></div>
 
-                    <!-- <label for="classroomId">강의실: </label>
+                    <label for="classroomId">강의실: </label>
                     <select th:field="*{id}">
                         <option value="">강의실을 선택하세요</option>
-                        <option th:each="c : ${classroomList}"
+                        <option th:each="c : ${classrooms}"
                             th:value="${c.id}"
                             th:text="${c.room.number} + ${c.name}">
                         </option>
-                    </select> -->
+                    </select>
                     
                     <label for="number">호수: </label>
                     <input type="text" th:field="*{number}">
+                    <div th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
 
                     <label for="basement">지하: </label>
                     <input type="checkbox" name="basement" id="basement">
@@ -59,6 +62,7 @@
                         <option value="RIGHT">우</option>
                         <option value="NO_SIGN">표지판이 없음</option>
                     </select>
+                    <div th:if="${#fields.hasErrors('direction')}" th:errors="*{direction}"></div>
 
                     <label for="doorType">문 종류: </label>
                     <select th:field="*{doorType}">
@@ -67,21 +71,24 @@
                         <option value="SINGLE">외여닫이문</option>
                         <option value="DOUBLE">쌍여닫이문</option>
                     </select>
+                    <div th:if="${#fields.hasErrors('doorType')}" th:errors="*{doorType}"></div>
 
                     <label for="count">문 수:</label>
                     <input type="number" th:field="*{count}">
+                    <div th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></div>
                     <br>
 
                     <label for="parentId">부모: </label>
                     <!-- <input type="hidden" name="parentId" id="parentId"> -->
                     <select th:field="*{parentId}">
                         <option value="">강의실을 선택하세요</option>
-                        <option th:each="c : ${classroomList}"
+                        <option th:each="c : ${classrooms}"
                             th:value="${c.id}"
-                            th:text="${c.room.number} + ${c.name}">
+                            th:text="${c.room.floor < 0 ? 'B' : ''} + ${c.room.number} + ' ' + ${c.name}">
                         </option>
                     </select>
                     <div id="dropZone">부모 강의실</div>
+                    <div th:if="${#fields.hasErrors('parentId')}" th:errors="*{parentId}"></div>
 
                     <label for="memo">메모: </label>
                     <input type="text" th:field="*{memo}">
@@ -98,6 +105,17 @@
 
                 </form>
             </div>
+        </th:block>
+        <th:block layout:fragment="javascript">
+            <script type="application/json" id="editForm" th:inline="javascript">
+                {
+                    "classrooms": [[${classrooms}]]
+                }
+            </script>
+            <script th:src="@{/js/edit-data.js}" defer></script>
+            <script th:src="@{/js/edit-selection.js}" defer></script>
+            <script th:src="@{/js/edit-dragdrop.js}" defer></script>
+            <script th:src="@{/js/edit-submit.js}" defer></script>
         </th:block>
     </body>
 </html>
