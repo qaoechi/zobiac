@@ -25,6 +25,8 @@ document.querySelectorAll(".room-item").forEach(div => {
                     if (input) {
                         if (input.type === "checkbox") input.checked = value;
                         input.value = value ?? "";
+                        
+                        if (key == "parentId") dropZone.textContent = value ? input.options[input.selectedIndex].text : "부모 강의실";
                     }
                 })
             return;
@@ -32,5 +34,6 @@ document.querySelectorAll(".room-item").forEach(div => {
         selectedRoom.classList.remove("selected");
         selectedRoom = null;
         editForm.reset();
+        dropZone.textContent = "부모 강의실";
     })
 })
