@@ -3,21 +3,25 @@ const maxLen = (len, msg) => (v) => v.length <= len ? true : msg;
 const minLen = (len, msg) => (v) => v.length >= len ? true : msg;
 const typeValid = (bool, msg) => (v) => bool ? true : msg;
 
-// function recursionParent(id, classroomId, visited = new Set()) {
-//     const parent = getListItem(classrooms, "id", id);
-//     if (!parent) return false;
+function recursionParent(parentId, classroomId) {
+    if (!parentId) return false;
 
-//     if (visited.has(parent.id)) return true;
-//     visited.add(parent.id);
+    if (parentId == classroomId) return true;
 
-//     if (!parent.parent) return false;
+    const parent = classrooms.find(x => x.id == parentId);
+    if (!parent || !parent.parent) return false;
 
-//     if(parent.parent.id == classroomId) return true;
+    return recursionParent(parent.parent.id, classroomId);
+}
+const circularParent = (classrooms, classroomId, msg) => {
+    return (parentId) => {
+        if (!parentId) return true;
 
-//     return recursionParent(parent.parent.id, classroomId, visited);
-// }
+        return recursionParent(parentId, classroomId) ? msg : true;
+    }
+}
 
-const validators  = {
+const validators = {
     building: [required("건물을 선택하세요")],
     classroomId: [],
     number: [
@@ -40,6 +44,9 @@ const validators  = {
 
 document.getElementById("editorForm").addEventListener("submit", function(e) {
     const form = new FormData(this);
+    
+    validators.parentId = [circularParent(classrooms, form.get("id"), "순환참조")];
+    
     for (const [field, value] of form.entries()) {
         const rules = validators[field];
         if (!rules) continue;
