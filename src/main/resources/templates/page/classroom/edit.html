@@ -14,7 +14,7 @@
             <span>active classroom</span>
             <div class="room-list">
                 <div th:each="classroom : ${classrooms}"
-                    th:text="${classroom.room.number} + ' ' + ${classroom.name}"
+                    th:text="${classroom.room.floor < 0 ? 'B' : ''} + ${classroom.room.number} + ' ' + ${classroom.name}"
                     th:data-id="${classroom.id}"
                     class="room-item"
                     draggable="true">
@@ -84,7 +84,7 @@
                         <option value="">강의실을 선택하세요</option>
                         <option th:each="c : ${classrooms}"
                             th:value="${c.id}"
-                            th:text="${c.room.number} + ${c.name}">
+                            th:text="${c.room.floor < 0 ? 'B' : ''} + ${c.room.number} + ' ' + ${c.name}">
                         </option>
                     </select>
                     <div id="dropZone">부모 강의실</div>

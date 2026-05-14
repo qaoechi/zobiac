@@ -12,7 +12,7 @@ document.getElementById("dropZone").addEventListener("drop", function(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData("text/plain");
     const classroom = classrooms.find(x => x.id == id);
-    this.textContent = classroom.room.number + "" + classroom.name;
+    this.textContent = (classroom.room.floor < 0 ? "B" : "") + classroom.room.number + " " + classroom.name;
     document.getElementById("parentId").value = id;
 })
 
